@@ -121,7 +121,7 @@ if ( sizeof($request_array['events']) > 0 ) {
                                 ]
                               ],
                               "size": "sm",
-                              "wrap": true
+                              "wrap": "true"
                             ],
                             [
                               "type": "box",
