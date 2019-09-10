@@ -1,7 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors',1);
 
 $API_URL = 'https://api.line.me/v2/bot/message';
 $ACCESS_TOKEN = 'f6QNtCLKjvG2f2VPU2Z2rsHi8ESXW/Uq1HQiYTFvrtnG51y70T+gYhF0h7oKMcAciTvRTo4nmYFqobRDMYhxdPILlW6eJmnKOgReCAIrTM4SMvBP+dIbjZrwnAr4gnRmxttnrzL4/TfyYOG09RaV4wdB04t89/1O/w1cDnyilFU=';
@@ -36,125 +34,14 @@ if ( sizeof($request_array['events']) > 0 ) {
             case "ประวัติ" :
             case "สมาชิก" :
 
-              $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : Trainnee Account \nรหัสนักธุรกิจ : BC6201669 \nอีเมล์ : the.miniinim@gmail.com \nโทร : (095) 652-8573";
-              $jsonFlex = [
-                "type"=> "bubble",
-                "body"=> [
-                  "type"=> "box",
-                  "layout"=> "vertical",
-                  "contents"=> [
-                    [
-                      "type"=> "box",
-                      "layout"=> "horizontal",
-                      "contents"=> [
-                        [
-                          "type"=> "image",
-                          "url"=> "https=>//scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip7.jpg",
-                          "size"=> "5xl",
-                          "aspectMode"=> "cover",
-                          "aspectRatio"=> "150=>196",
-                          "gravity"=> "center",
-                          "flex"=> 1
-                        ],
-                        [
-                          "type"=> "box",
-                          "layout"=> "vertical",
-                          "contents"=> [
-                            [
-                              "type"=> "image",
-                              "url"=> "https=>//scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip8.jpg",
-                              "size"=> "full",
-                              "aspectMode"=> "cover",
-                              "aspectRatio"=> "150=>98",
-                              "gravity"=> "center"
-                            ],
-                            [
-                              "type"=> "image",
-                              "url"=> "https=>//scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip9.jpg",
-                              "size"=> "full",
-                              "aspectMode"=> "cover",
-                              "aspectRatio"=> "150=>98",
-                              "gravity"=> "center"
-                            ]
-                          ],
-                          "flex"=> 1
-                        ]
-                      ]
-                    ],
-                    [
-                      "type"=> "box",
-                      "layout"=> "horizontal",
-                      "contents"=> [
-                        [
-                          "type"=> "box",
-                          "layout"=> "vertical",
-                          "contents"=> [
-                            [
-                              "type"=> "image",
-                              "url"=> "https=>//scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",
-                              "aspectMode"=> "cover",
-                              "size"=> "full"
-                            ]
-                          ],
-                          "cornerRadius"=> "100px",
-                          "width"=> "72px",
-                          "height"=> "72px"
-                        ],
-                        [
-                          "type"=> "box",
-                          "layout"=> "vertical",
-                          "contents"=> [
-                            [
-                              "type"=> "text",
-                              "contents"=> [
-                                [
-                                  "type"=> "span",
-                                  "text"=> "brown_05",
-                                  "weight"=> "bold",
-                                  "color"=> "#000000"
-                                ],
-                                [
-                                  "type"=> "span",
-                                  "text"=> "     "
-                                ],
-                                [
-                                  "type"=> "span",
-                                  "text"=> "I went to the Brown&Cony cafe in Tokyo and took a picture"
-                                ]
-                              ],
-                              "size"=> "sm",
-                              "wrap"=> "true"
-                            ],
-                            [
-                              "type"=> "box",
-                              "layout"=> "baseline",
-                              "contents"=> [
-                                [
-                                  "type"=> "text",
-                                  "text"=> "1,140,753 Like",
-                                  "size"=> "sm",
-                                  "color"=> "#bcbcbc"
-                                ]
-                              ],
-                              "spacing"=> "sm",
-                              "margin"=> "md"
-                            ]
-                          ]
-                        ]
-                      ],
-                      "spacing"=> "xl",
-                      "paddingAll"=> "20px"
-                    ]
-                  ],
-                  "paddingAll"=> "0px"
-                ]
-              ];
-
-              $data =
-              [
-                'replyToken'  => $reply_token,
-                'messages'    => [$jsonFlex]
-              ];
+            $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : Trainnee Account \nรหัสนักธุรกิจ : BC6201669 \nอีเมล์ : the.miniinim@gmail.com \nโทร : (095) 652-8573";
+            $data =
+            [
+              'replyToken' => $reply_token,
+              //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+              //'messages' => [['type' => 'text', 'text' => $text ]]
+              'messages' => [['type' => 'text', 'text' => $reply_text ]]
+            ];
 
             break;
 
