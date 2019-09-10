@@ -35,11 +35,12 @@ if ( sizeof($request_array['events']) > 0 ) {
             case "สมาชิก" :
 
             $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : Trainnee Account \nรหัสนักธุรกิจ : BC6201669 \nอีเมล์ : the.miniinim@gmail.com \nโทร : (095) 652-8573";
-            $data = [
-                'replyToken' => $reply_token,
-                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
-                //'messages' => [['type' => 'text', 'text' => $text ]]
-                'messages' => [['type' => 'text', 'text' => $reply_text ]]
+            $data =
+            [
+              'replyToken' => $reply_token,
+              //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+              //'messages' => [['type' => 'text', 'text' => $text ]]
+              'messages' => [['type' => 'text', 'text' => $reply_text ]]
             ];
 
             break;
@@ -49,13 +50,113 @@ if ( sizeof($request_array['events']) > 0 ) {
             case "แคชแบค" :
             case "ยอดขาย" :
 
-            $reply_text = "รายได้จากยอดธุรกิจส่วนตัว \nยอดขาย : 150,000 บาท \nCashback : 15,000 บาท \nยอดขายระหว่างวันที่ 11 ส.ค. 2562 - 10 ก.ย. 2562";
-            $data = [
-                'replyToken' => $reply_token,
-                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
-                //'messages' => [['type' => 'text', 'text' => $text ]]
-                'messages' => [['type' => 'text', 'text' => $reply_text ]]
-            ];
+            $jsonFlex = [
+                "type" => "flex",
+                "altText" => "รายได้จากยอดธุรกิจส่วนตัว",
+                "contents" => [
+                  "type" => "bubble",
+                  "direction" => "ltr",
+                  "header" => [
+                    "type" => "box",
+                    "layout" => "vertical",
+                    "contents" => [
+                      [
+                        "type" => "text",
+                        "text" => "รายได้จากยอดธุรกิจส่วนตัว",
+                        "size" => "lg",
+                        "align" => "start",
+                        "weight" => "bold",
+                        "color" => "#009813"
+                      ],
+                      [
+                        "type" => "text",
+                        "text" => "ยอดขาย",
+                        "size" => "lg",
+                        "weight" => "bold",
+                        "color" => "#000000"
+                      ],
+                      [
+                        "type" => "text",
+                        "text" => "฿ 150,500.00",
+                        "size" => "3xl",
+                        "weight" => "bold",
+                        "color" => "#000000"
+                      ],
+                      [
+                        "type" => "text",
+                        "text" => "ยอดขายระหว่างวันที่ 11 ส.ค. 2562 - 10 ก.ย. 2562",
+                        "size" => "xs",
+                        "color" => "#B2B2B2"
+                      ],
+                      [
+                        "type" => "text",
+                        "text" => "ยังไม่ถึงรอบจ่าย.",
+                        "margin" => "lg",
+                        "size" => "lg",
+                        "color" => "#000000"
+                      ]
+                    ]
+                  ],
+                  "body" => [
+                    "type" => "box",
+                    "layout" => "vertical",
+                    "contents" => [
+                      [
+                        "type" => "separator",
+                        "color" => "#C3C3C3"
+                      ],
+                      [
+                        "type" => "box",
+                        "layout" => "baseline",
+                        "margin" => "lg",
+                        "contents" => [
+                          [
+                            "type" => "text",
+                            "text" => "Cashback",
+                            "align" => "start",
+                            "color" => "#C3C3C3"
+                          ],
+                          [
+                            "type" => "text",
+                            "text" => "฿ 500.00",
+                            "align" => "end",
+                            "color" => "#000000"
+                          ]
+                        ]
+                      ],
+                      [
+                        "type" => "separator",
+                        "margin" => "lg",
+                        "color" => "#C3C3C3"
+                      ]
+                    ]
+                  ],
+                  "footer" => [
+                    "type" => "box",
+                    "layout" => "horizontal",
+                    "contents" => [
+                      [
+                        "type" => "text",
+                        "text" => "ดูข้อมุลทั้งหมด",
+                        "size" => "lg",
+                        "align" => "start",
+                        "color" => "#0084B6",
+                        "action" => [
+                          "type" => "uri",
+                          "label" => "ดูข้อมุลทั้งหมด",
+                          "uri" => "https://family.confideen.com/"
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ];
+
+              $data =
+              [
+                'replyToken'  => $reply_token,
+                'messages'    => [$jsonFlex]
+              ];
 
             break;
 
