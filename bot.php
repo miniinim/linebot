@@ -35,6 +35,12 @@ if ( sizeof($request_array['events']) > 0 ) {
             case "สมาชิก" :
 
             $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : Trainnee Account \nรหัสนักธุรกิจ : BC6201669 \nอีเมล์ : the.miniinim@gmail.com \nโทร : (095) 652-8573";
+            $data = [
+                'replyToken' => $reply_token,
+                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                //'messages' => [['type' => 'text', 'text' => $text ]]
+                'messages' => [['type' => 'text', 'text' => $reply_text ]]
+            ];
 
             break;
 
@@ -44,6 +50,12 @@ if ( sizeof($request_array['events']) > 0 ) {
             case "ยอดขาย" :
 
             $reply_text = "รายได้จากยอดธุรกิจส่วนตัว \nยอดขาย : 150,000 บาท \nCashback : 15,000 บาท \nยอดขายระหว่างวันที่ 11 ส.ค. 2562 - 10 ก.ย. 2562";
+            $data = [
+                'replyToken' => $reply_token,
+                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                //'messages' => [['type' => 'text', 'text' => $text ]]
+                'messages' => [['type' => 'text', 'text' => $reply_text ]]
+            ];
 
             break;
 
@@ -199,7 +211,10 @@ if ( sizeof($request_array['events']) > 0 ) {
                 ]
               ];
 
-              $reply_text = [$jsonFlex];
+              $data = [
+                  'replyToken' => $reply_token,
+                  'messages' => [$jsonFlex]
+              ];
 
             break;
 
@@ -209,22 +224,29 @@ if ( sizeof($request_array['events']) > 0 ) {
             case "ช่วยเหลือ" :
 
             $reply_text = "คำสั่งที่สามารถใช้ได้คือ \n1. Detail สำหรับเรียกข้อมููลส่วนตัว \n2. Cashback สำหรับเรียกคะแนนยอดขาย Cashback \n3. PV สำหรับเรียกคะแนนโบนัสสายงาน (PV)";
+            $data = [
+                'replyToken' => $reply_token,
+                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                //'messages' => [['type' => 'text', 'text' => $text ]]
+                'messages' => [['type' => 'text', 'text' => $reply_text ]]
+            ];
 
             break;
 
             default:
 
               $reply_text = "ไม่เข้าใจคำถามของคุณ พิมพ์ Help/ช่วยเหลือ เพื่อดูคำสั่งที่สามารถใช้งานได้";
+              $data = [
+                  'replyToken' => $reply_token,
+                  //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                  //'messages' => [['type' => 'text', 'text' => $text ]]
+                  'messages' => [['type' => 'text', 'text' => $reply_text ]]
+              ];
 
             break;
         }
 
-        $data = [
-            'replyToken' => $reply_token,
-            //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
-            //'messages' => [['type' => 'text', 'text' => $text ]]
-            'messages' => [['type' => 'text', 'text' => $reply_text ]]
-        ];
+
         $post_body    = json_encode($data, JSON_UNESCAPED_UNICODE);
         $send_result  = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
 
