@@ -31,30 +31,19 @@ if ( sizeof($request_array['events']) > 0 )
 
             $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : Trainnee Account \nรหัสนักธุรกิจ : BC6201669 \nอีเมล์ : the.miniinim@gmail.com \nโทร : (095) 652-8573";
 
-            $jsonFlex = [
+            $jsonFlex =
+            [
                 "type" => "flex",
                 "altText" => "Hello Flex Message",
                 "contents" => [
                   "type" => "bubble",
                   "direction" => "ltr",
-                  "header" => [
+                  "body" =>
+                  [
                     "type" => "box",
                     "layout" => "vertical",
-                    "contents" => [
-                      [
-                        "type" => "text",
-                        "text" => "Purchase",
-                        "size" => "lg",
-                        "align" => "start",
-                        "weight" => "bold",
-                        "color" => "#009813"
-                      ]
-                    ]
-                  ],
-                  "body" => [
-                    "type" => "box",
-                    "layout" => "vertical",
-                    "contents" => [
+                    "contents" =>
+                    [
                       [
                         "type" => "image",
                         "url" => "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",
@@ -62,33 +51,15 @@ if ( sizeof($request_array['events']) > 0 )
                         "size" => "full"
                       ]
                     ]
-                  ],
-                  "footer" => [
-                    "type" => "box",
-                    "layout" => "horizontal",
-                    "contents" => [
-                      [
-                        "type" => "text",
-                        "text" => "View Details",
-                        "size" => "lg",
-                        "align" => "start",
-                        "color" => "#0084B6",
-                        "action" => [
-                          "type" => "uri",
-                          "label" => "View Details",
-                          "uri" => "https://google.co.th/"
-                        ]
-                      ]
-                    ]
                   ]
                 ]
               ];
 
-            $data =
-            [
-              'replyToken'  => $reply_token,
-              'messages'    => [$jsonFlex]
-            ];
+              $data =
+              [
+                'replyToken'  => $reply_token,
+                'messages'    => [$jsonFlex]
+              ];
 
             break;
 
