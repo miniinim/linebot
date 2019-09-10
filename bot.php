@@ -1,22 +1,17 @@
 <?php
 
-
-$API_URL = 'https://api.line.me/v2/bot/message';
-$ACCESS_TOKEN = 'f6QNtCLKjvG2f2VPU2Z2rsHi8ESXW/Uq1HQiYTFvrtnG51y70T+gYhF0h7oKMcAciTvRTo4nmYFqobRDMYhxdPILlW6eJmnKOgReCAIrTM4SMvBP+dIbjZrwnAr4gnRmxttnrzL4/TfyYOG09RaV4wdB04t89/1O/w1cDnyilFU=';
-$channelSecret = 'd971cc07e553dd232e5deecaab0a2982';
-
-
-$POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
-
-$request = file_get_contents('php://input');   // Get request content
-$request_array = json_decode($request, true);   // Decode JSON to Array
+$API_URL        = 'https://api.line.me/v2/bot/message';
+$ACCESS_TOKEN   = 'f6QNtCLKjvG2f2VPU2Z2rsHi8ESXW/Uq1HQiYTFvrtnG51y70T+gYhF0h7oKMcAciTvRTo4nmYFqobRDMYhxdPILlW6eJmnKOgReCAIrTM4SMvBP+dIbjZrwnAr4gnRmxttnrzL4/TfyYOG09RaV4wdB04t89/1O/w1cDnyilFU=';
+$channelSecret  = 'd971cc07e553dd232e5deecaab0a2982';
+$POST_HEADER    = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
+$request        = file_get_contents('php://input');   // Get request content
+$request_array  = json_decode($request, true);   // Decode JSON to Array
 
 
-
-if ( sizeof($request_array['events']) > 0 ) {
-
-    foreach ($request_array['events'] as $event) {
-
+if ( sizeof($request_array['events']) > 0 )
+{
+    foreach ($request_array['events'] as $event)
+    {
         $reply_message = '';
         $reply_token = $event['replyToken'];
 
