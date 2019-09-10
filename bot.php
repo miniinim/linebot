@@ -36,8 +36,8 @@ if ( sizeof($request_array['events']) > 0 )
                 "type" => "bubble",
                 "altText" => "Hello Flex Message",
                 "contents" => [
-                  "type" => "bubble",
-                  "direction" => "ltr",
+                  "type" => "box",
+                  "layout" => "vertical",
                   "body" =>
                   [
                     "type" => "box",
