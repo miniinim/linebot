@@ -30,12 +30,19 @@ if ( sizeof($request_array['events']) > 0 )
             case "สมาชิก" :
 
             $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : Trainnee Account \nรหัสนักธุรกิจ : BC6201669 \nอีเมล์ : the.miniinim@gmail.com \nโทร : (095) 652-8573";
+
+            $jsonFlex =
+            [
+              "type"        => "image",
+              "url"         => "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip9.jpg",
+              "size"        => "full",
+              "aspectRatio" => "1.91:1"
+            ];
+
             $data =
             [
-              'replyToken' => $reply_token,
-              //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
-              //'messages' => [['type' => 'text', 'text' => $text ]]
-              'messages' => [['type' => 'text', 'text' => $reply_text ]]
+              'replyToken'  => $reply_token,
+              'messages'    => [$jsonFlex]
             ];
 
             break;
