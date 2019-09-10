@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 
@@ -37,115 +38,115 @@ if ( sizeof($request_array['events']) > 0 ) {
 
               $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : Trainnee Account \nรหัสนักธุรกิจ : BC6201669 \nอีเมล์ : the.miniinim@gmail.com \nโทร : (095) 652-8573";
               $jsonFlex = [
-                "type": "bubble",
-                "body": [
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
+                "type"=> "bubble",
+                "body"=> [
+                  "type"=> "box",
+                  "layout"=> "vertical",
+                  "contents"=> [
                     [
-                      "type": "box",
-                      "layout": "horizontal",
-                      "contents": [
+                      "type"=> "box",
+                      "layout"=> "horizontal",
+                      "contents"=> [
                         [
-                          "type": "image",
-                          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip7.jpg",
-                          "size": "5xl",
-                          "aspectMode": "cover",
-                          "aspectRatio": "150:196",
-                          "gravity": "center",
-                          "flex": 1
+                          "type"=> "image",
+                          "url"=> "https=>//scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip7.jpg",
+                          "size"=> "5xl",
+                          "aspectMode"=> "cover",
+                          "aspectRatio"=> "150=>196",
+                          "gravity"=> "center",
+                          "flex"=> 1
                         ],
                         [
-                          "type": "box",
-                          "layout": "vertical",
-                          "contents": [
+                          "type"=> "box",
+                          "layout"=> "vertical",
+                          "contents"=> [
                             [
-                              "type": "image",
-                              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip8.jpg",
-                              "size": "full",
-                              "aspectMode": "cover",
-                              "aspectRatio": "150:98",
-                              "gravity": "center"
+                              "type"=> "image",
+                              "url"=> "https=>//scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip8.jpg",
+                              "size"=> "full",
+                              "aspectMode"=> "cover",
+                              "aspectRatio"=> "150=>98",
+                              "gravity"=> "center"
                             ],
                             [
-                              "type": "image",
-                              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip9.jpg",
-                              "size": "full",
-                              "aspectMode": "cover",
-                              "aspectRatio": "150:98",
-                              "gravity": "center"
+                              "type"=> "image",
+                              "url"=> "https=>//scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip9.jpg",
+                              "size"=> "full",
+                              "aspectMode"=> "cover",
+                              "aspectRatio"=> "150=>98",
+                              "gravity"=> "center"
                             ]
                           ],
-                          "flex": 1
+                          "flex"=> 1
                         ]
                       ]
                     ],
                     [
-                      "type": "box",
-                      "layout": "horizontal",
-                      "contents": [
+                      "type"=> "box",
+                      "layout"=> "horizontal",
+                      "contents"=> [
                         [
-                          "type": "box",
-                          "layout": "vertical",
-                          "contents": [
+                          "type"=> "box",
+                          "layout"=> "vertical",
+                          "contents"=> [
                             [
-                              "type": "image",
-                              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",
-                              "aspectMode": "cover",
-                              "size": "full"
+                              "type"=> "image",
+                              "url"=> "https=>//scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",
+                              "aspectMode"=> "cover",
+                              "size"=> "full"
                             ]
                           ],
-                          "cornerRadius": "100px",
-                          "width": "72px",
-                          "height": "72px"
+                          "cornerRadius"=> "100px",
+                          "width"=> "72px",
+                          "height"=> "72px"
                         ],
                         [
-                          "type": "box",
-                          "layout": "vertical",
-                          "contents": [
+                          "type"=> "box",
+                          "layout"=> "vertical",
+                          "contents"=> [
                             [
-                              "type": "text",
-                              "contents": [
+                              "type"=> "text",
+                              "contents"=> [
                                 [
-                                  "type": "span",
-                                  "text": "brown_05",
-                                  "weight": "bold",
-                                  "color": "#000000"
+                                  "type"=> "span",
+                                  "text"=> "brown_05",
+                                  "weight"=> "bold",
+                                  "color"=> "#000000"
                                 ],
                                 [
-                                  "type": "span",
-                                  "text": "     "
+                                  "type"=> "span",
+                                  "text"=> "     "
                                 ],
                                 [
-                                  "type": "span",
-                                  "text": "I went to the Brown&Cony cafe in Tokyo and took a picture"
+                                  "type"=> "span",
+                                  "text"=> "I went to the Brown&Cony cafe in Tokyo and took a picture"
                                 ]
                               ],
-                              "size": "sm",
-                              "wrap": "true"
+                              "size"=> "sm",
+                              "wrap"=> "true"
                             ],
                             [
-                              "type": "box",
-                              "layout": "baseline",
-                              "contents": [
+                              "type"=> "box",
+                              "layout"=> "baseline",
+                              "contents"=> [
                                 [
-                                  "type": "text",
-                                  "text": "1,140,753 Like",
-                                  "size": "sm",
-                                  "color": "#bcbcbc"
+                                  "type"=> "text",
+                                  "text"=> "1,140,753 Like",
+                                  "size"=> "sm",
+                                  "color"=> "#bcbcbc"
                                 ]
                               ],
-                              "spacing": "sm",
-                              "margin": "md"
+                              "spacing"=> "sm",
+                              "margin"=> "md"
                             ]
                           ]
                         ]
                       ],
-                      "spacing": "xl",
-                      "paddingAll": "20px"
+                      "spacing"=> "xl",
+                      "paddingAll"=> "20px"
                     ]
                   ],
-                  "paddingAll": "0px"
+                  "paddingAll"=> "0px"
                 ]
               ];
 
