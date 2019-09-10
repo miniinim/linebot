@@ -22,7 +22,7 @@ if ( sizeof($request_array['events']) > 0 ) {
 
         $text = $event['message']['text'];
         $data = [
-            'replyToken' => $reply_token,
+            'replyToken' => $reply_token
             //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
             //'messages' => [['type' => 'text', 'text' => $text ]]
         ];
