@@ -20,12 +20,13 @@ if ( sizeof($request_array['events']) > 0 ) {
         $reply_message = '';
         $reply_token = $event['replyToken'];
 
-        $text = $event['message']['text'];
+        $text   = $event['message']['text'];
+        $userID = $event['replyToken']['source']['userId'];
         $data = [
             'replyToken' => $reply_token,
             //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
             //'messages' => [['type' => 'text', 'text' => $text ]]
-            'messages' => [['type' => 'text', 'text' => $event['replyToken']['source']['userId'] ]]
+            'messages' => [['type' => 'text', 'text' => $userID ]]
 
         ];
         $post_body    = json_encode($data, JSON_UNESCAPED_UNICODE);
