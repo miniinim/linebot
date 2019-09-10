@@ -21,7 +21,7 @@ if ( sizeof($request_array['events']) > 0 ) {
         $reply_token = $event['replyToken'];
 
         $text   = $event['message']['text'];
-        $userID = $event['replyToken']['source']['userId'];
+        $userID = $event['source']['userId'];
         $data = [
             'replyToken' => $reply_token,
             //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
@@ -36,8 +36,6 @@ if ( sizeof($request_array['events']) > 0 ) {
 }
 
 echo "OK";
-
-
 
 
 function send_reply_message($url, $post_header, $post_body)
