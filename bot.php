@@ -33,7 +33,7 @@ if ( sizeof($request_array['events']) > 0 )
 
             $jsonFlex =
             [
-                "type" => "flex",
+                "type" => "bubble",
                 "altText" => "Hello Flex Message",
                 "contents" => [
                   "type" => "bubble",
