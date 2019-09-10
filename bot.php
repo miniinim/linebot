@@ -149,7 +149,7 @@ if ( sizeof($request_array['events']) > 0 ) {
                         "contents" => [
                           [
                             "type" => "text",
-                            "text" => "Team Bonus (สายหลัก)",
+                            "text" => "Bonus (สายหลัก)",
                             "color" => "#C3C3C3"
                           ],
                           [
@@ -166,7 +166,7 @@ if ( sizeof($request_array['events']) > 0 ) {
                         "contents" => [
                           [
                             "type" => "text",
-                            "text" => "Team Bonus (สายรอง)",
+                            "text" => "Bonus (สายรอง)",
                             "color" => "#C3C3C3"
                           ],
                           [
