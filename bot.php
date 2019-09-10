@@ -27,36 +27,51 @@ if ( sizeof($request_array['events']) > 0 ) {
 
         switch ($text)
         {
-              case ("Detail" || "detail" || "ข้อมุล" || "ประวัติ" || "สมาชิก"):
+            case "Detail" :
+            case "detail" :
+            case "ข้อมุล" :
+            case "ประวัติ" :
+            case "สมาชิก" :
 
-                $reply_text = "ข้อมูลส่วนตัวของสมาชิก: " . $userID;
+            $reply_text = "ข้อมูลส่วนตัวของสมาชิก: " . $userID;
 
-              break;
+            break;
 
-              case ("Cashback" || "cashback" || "แคชแบค" || "ยอดขาย"):
+            case "Cashback" :
+            case "cashback" :
+            case "แคชแบค" :
+            case "ยอดขาย" :
 
-                $reply_text = "ยอดโบนัสจากการขายปลีก Cashback: " . $userID;
+            $reply_text = "ยอดโบนัสจากการขายปลีก Cashback: " . $userID;
 
-              break;
+            break;
 
-              case ("PV" || "pv" || "Pv" || "พีวี" || "โบนัส" || "โบนัส"):
+            case "PV" :
+            case "pv" :
+            case "Pv" :
+            case "พีวี" :
+            case "โบนัส" :
+            case "โบนัส" :
 
-                $reply_text = "คะแนนโบนัสจากการพัฒนาสายงาน PV: " . $userID;
+            $reply_text = "คะแนนโบนัสจากการพัฒนาสายงาน PV: " . $userID;
 
-              break;
+            break;
 
-              case ("Help" || "help" || "ช่วย" || "ช่วยเหลือ"):
+            case "Help":
+            case "help":
+            case "ช่วย":
+            case "ช่วยเหลือ" :
 
-                $reply_text = "คำสั่งที่สามารถใช้ได้คือ \n1. Detail สำหรับเรียกข้อมููลส่วนตัว \n2. Cashback สำหรับเรียกคะแนนยอดขาย Cashback \n3. PV สำหรับเรียกคะแนนโบนัสสายงาน (PV)";
+            $reply_text = "คำสั่งที่สามารถใช้ได้คือ \n1. Detail สำหรับเรียกข้อมููลส่วนตัว \n2. Cashback สำหรับเรียกคะแนนยอดขาย Cashback \n3. PV สำหรับเรียกคะแนนโบนัสสายงาน (PV)";
 
-              break;
+            break;
 
-              default:
+            default:
 
-                $reply_text = "ไม่เข้าใจคำถามของคุณ พิมพ์ Help/ช่วยเหลือ เพื่อดูคำสั่งที่สามารถใช้งานได้";
+              $reply_text = "ไม่เข้าใจคำถามของคุณ พิมพ์ Help/ช่วยเหลือ เพื่อดูคำสั่งที่สามารถใช้งานได้";
 
-              break;
-          }
+            break;
+        }
 
         $data = [
             'replyToken' => $reply_token,
