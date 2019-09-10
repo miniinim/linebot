@@ -22,11 +22,47 @@ if ( sizeof($request_array['events']) > 0 ) {
 
         $text   = $event['message']['text'];
         $userID = $event['source']['userId'];
+
+        //Api Member Check
+
+        switch ($text)
+        {
+              case ("Detail" || "detail" || "ข้อมุล" || "ประวัติ" || "สมาชิก"):
+
+                $reply_text = "ข้อมูลส่วนตัวของสมาชิก: " . $userID;
+
+              break;
+
+              case ("Cashback" || "cashback" || "แคชแบค" || "ยอดขาย"):
+
+                $reply_text = "ยอดโบนัสจากการขายปลีก Cashback: " . $userID;
+
+              break;
+
+              case ("PV" || "pv" || "Pv" || "พีวี" || "โบนัส" || "โบนัส"):
+
+                $reply_text = "คะแนนโบนัสจากการพัฒนาสายงาน PV: " . $userID;
+
+              break;
+
+              case ("Help" || "help" || "ช่วย" || "ช่วยเหลือ"):
+
+                $reply_text = "คำสั่งที่สามารถใช้ได้คือ \n1. Detail สำหรับเรียกข้อมููลส่วนตัว \n2. Cashback สำหรับเรียกคะแนนยอดขาย Cashback \n3. PV สำหรับเรียกคะแนนโบนัสสายงาน (PV)";
+
+              break;
+
+              default:
+
+                $reply_text = "ไม่เข้าใจคำถามของคุณ พิมพ์ Help/ช่วยเหลือ เพื่อดูคำสั่งที่สามารถใช้งานได้";
+
+              break;
+          }
+
         $data = [
             'replyToken' => $reply_token,
             //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
             //'messages' => [['type' => 'text', 'text' => $text ]]
-            'messages' => [['type' => 'text', 'text' => $userID ]]
+            'messages' => [['type' => 'text', 'text' => $reply_text ]]
 
         ];
         $post_body    = json_encode($data, JSON_UNESCAPED_UNICODE);
