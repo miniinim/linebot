@@ -31,7 +31,7 @@ if ( sizeof($request_array['events']) > 0 ) {
         $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
 
         //echo $send_result['events']['source']['userID']
-        echo "Result: ".$send_result['events']['source']['userID']."\r\n";
+        echo "Result: ".$request_array['events']['source']['userID']."\r\n";
     }
 }
 
