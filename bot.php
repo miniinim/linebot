@@ -52,7 +52,7 @@ if ( sizeof($request_array['events']) > 0 ) {
             case "Pv" :
             case "พีวี" :
             case "โบนัส" :
-            case "โบนัส" :
+            case "คะแนนธุรกิจ" :
 
             $reply_text = "รายได้จากการพัฒนาสายงาน \nคะแนนธุรกิจ : 150,000 PV \nPersonal Bonus : 5,000 PV \nยอดขายระหว่างวันที่ 11 ส.ค. 2562 - 10 ก.ย. 2562";
 
