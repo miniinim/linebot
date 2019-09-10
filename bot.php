@@ -82,7 +82,7 @@ if ( sizeof($request_array['events']) > 0 ) {
         ];
         $post_body    = json_encode($data, JSON_UNESCAPED_UNICODE);
         $send_result  = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
-        
+
         echo "Result: ".$send_result."\r\n";
 
         $arrayPostData['to'] = $userID;
@@ -91,7 +91,7 @@ if ( sizeof($request_array['events']) > 0 ) {
         $arrayPostData['messages'][1]['type'] = "sticker";
         $arrayPostData['messages'][1]['packageId'] = "2";
         $arrayPostData['messages'][1]['stickerId'] = "34";
-        pushMsg($arrayHeader,$arrayPostData);
+        pushMsg($post_header,$arrayPostData);
     }
 }
 
