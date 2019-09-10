@@ -33,7 +33,7 @@ if ( sizeof($request_array['events']) > 0 ) {
             case "ประวัติ" :
             case "สมาชิก" :
 
-            $reply_text = "ข้อมูลส่วนตัวของสมาชิก: " . $userID;
+            $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : Trainnee Account \nรหัสนักธุรกิจ : BC6201669 \nอีเมล์ : the.miniinim@gmail.com \nโทร : (095) 652-8573";
 
             break;
 
@@ -42,7 +42,7 @@ if ( sizeof($request_array['events']) > 0 ) {
             case "แคชแบค" :
             case "ยอดขาย" :
 
-            $reply_text = "ยอดโบนัสจากการขายปลีก Cashback: " . $userID;
+            $reply_text = "รายได้จากยอดธุรกิจส่วนตัว \nยอดขาย : 150,000 บาท \nCashback : 15,000 บาท \nยอดขายระหว่างวันที่ 11 ส.ค. 2562 - 10 ก.ย. 2562";
 
             break;
 
@@ -53,7 +53,7 @@ if ( sizeof($request_array['events']) > 0 ) {
             case "โบนัส" :
             case "โบนัส" :
 
-            $reply_text = "คะแนนโบนัสจากการพัฒนาสายงาน PV: " . $userID;
+            $reply_text = "รายได้จากการพัฒนาสายงาน \nคะแนนธุรกิจ : 150,000 PV \nPersonal Bonus : 5,000 PV \nยอดขายระหว่างวันที่ 11 ส.ค. 2562 - 10 ก.ย. 2562";
 
             break;
 
