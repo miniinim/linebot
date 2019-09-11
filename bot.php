@@ -30,7 +30,7 @@ if ( sizeof($request_array['events']) > 0 )
             case "สมาชิก" :
 
         		//---------------- get data -----------------//
-        		$output     = api("get", "/lesson/list");
+        		$output     = api("GET","/authen/detail/" . $userID);
             $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : Trainnee Account \nรหัสนักธุรกิจ : BC6201669 \nอีเมล์ : the.miniinim@gmail.com \nโทร : (095) 652-8573 - {$userID}";
 
             $data =
@@ -373,7 +373,7 @@ function api($get, $call, $data)
 
 	switch ($get)
 	{
-		case "get": // เรียกข้อมูล
+		case "GET": // เรียกข้อมูล
 
 			//------------------------- API -------------------------------------------
 			$header = array();
@@ -420,61 +420,6 @@ function api($get, $call, $data)
 			//-------------------------------------------------------------------------------
 			//------------------------- Return -------------------------------------------
 			return $output;
-		break;
-
-		case "PUT": // ส่งข้อมูล
-			//------------------------- API -------------------------------------------
-
-			$data = array('username'=>'dog','password'=>'tall');
-			$data_json = json_encode($data);
-
-			//------------------------- API -------------------------------------------
-			$url = 'https://www.we-lotto.com/api/member/2';
-			//------------------------- API -------------------------------------------
-			$header = array();
-			$header[] = 'Content-length: 0';
-			$header[] = 'Content-type: application/json';
-			$header[] = "api-key: {$apiKey}";
-			$header[] = "secret-key: {$secretKey}";
-			//------------------------- API -------------------------------------------
-			$ch = curl_init($url);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-			curl_setopt($ch, CURLOPT_POST, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $data_json);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-			$response_json = curl_exec($ch);
-			curl_close($ch);
-			//------------------------- Return -------------------------------------------
-			$response = json_decode($response_json, true);
-			print_r($response);
-
-			//return $response;
-			//------------------------- Return -------------------------------------------
-		break;
-
-		case "DELETE": // ลบข้อมูล
-
-			//------------------------- API -------------------------------------------
-			$url = 'https://www.we-lotto.com/api/member/3';
-			//------------------------- API -------------------------------------------
-			$header = array();
-			$header[] = 'Content-length: 0';
-			$header[] = 'Content-type: application/json';
-			$header[] = "api-key: {$apiKey}";
-			$header[] = "secret-key: {$secretKey}";
-			//------------------------- API -------------------------------------------
-			$ch = curl_init($url);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-			$response_json = curl_exec($ch);
-			curl_close($ch);
-			//------------------------- Return -------------------------------------------
-			$response = json_decode($response_json, true);
-			print_r($response);
-			//------------------------- Return -------------------------------------------
-
 		break;
 
 	}
