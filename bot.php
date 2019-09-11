@@ -36,13 +36,28 @@ if ( sizeof($request_array['events']) > 0 )
 
             $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : {$test_connect['member']['mem_firstname']} {$test_connect['member']['mem_lastname']} \nรหัสนักธุรกิจ : {$test_connect['member']['mem_code']} \nอีเมล์ : {$test_connect['member']['mem_email']} \nโทร : {$test_connect['member']['mem_phone']}";
 
-            $data =
-            [
-              'replyToken' => $reply_token,
-              //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
-              //'messages' => [['type' => 'text', 'text' => $text ]]
-              'messages' => [['type' => 'text', 'text' => $reply_text ]]
-            ];
+            if($test_connect['ini'] == "true")
+            {
+              $data =
+              [
+                'replyToken' => $reply_token,
+                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                //'messages' => [['type' => 'text', 'text' => $text ]]
+                'messages' => [['type' => 'text', 'text' => $reply_text ]]
+              ];
+            }
+            else if($test_connect['ini'] == "false")
+            {
+              $data =
+              [
+                'replyToken' => $reply_token,
+                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                //'messages' => [['type' => 'text', 'text' => $text ]]
+                'messages' => [['type' => 'text', 'text' => "บัญชี Line ของคุณยังไม่ผ่านการผูกบัญชี Confideen Family ต้องการผูกบัญชี กรุณาตอบกลับข้อความนี้ด้วยคำสั่ง \"ผูกบัญชี\"" ]]
+              ];
+            }
+
+
 
             break;
 
@@ -342,16 +357,12 @@ if ( sizeof($request_array['events']) > 0 )
             break;
         }
 
-
         $post_body    = json_encode($data, JSON_UNESCAPED_UNICODE);
         $send_result  = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
 
         echo "Result: ".$send_result."\r\n";
     }
 }
-
-echo "OK";
-
 
 function send_reply_message($url, $post_header, $post_body)
 {
@@ -369,7 +380,6 @@ function send_reply_message($url, $post_header, $post_body)
 
 function api_connect($get, $call, $data)
 {
-
 	$apiKey 	  = "8rMz65o3D0E";
 	$secretKey  = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNAD";
   $url        = "https://family.confideen.com/api" . $call;
@@ -420,7 +430,8 @@ function api_connect($get, $call, $data)
 			$response_json = curl_exec($ch);
 			curl_close($ch);
 			//------------------------- Return -------------------------------------------
-			$output = json_decode($response_json, true);
+      //$output = json_decode($response_json, true);
+			$output = unserialize(base64_decode($response_json));
 			//-------------------------------------------------------------------------------
 			//------------------------- Return -------------------------------------------
 			return $output;
