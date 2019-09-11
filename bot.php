@@ -92,14 +92,53 @@ if ( sizeof($request_array['events']) > 0 )
             case "ผูกบัญชี" :
             case "Link" :
 
-        		//---------------- get data -----------------//
-        		//$output     = api("GET","/authen/detail/" . $userID);
+        		  //---------------- get data -----------------//
+        		  //$output     = api("GET","/authen/detail/" . $userID);
+
+              // บันทึกเหตุการณ์ล่าสุดว่าขอผูกบัญชี
+
               $data =
               [
                 'replyToken' => $reply_token,
                 //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
                 //'messages' => [['type' => 'text', 'text' => $text ]]
                 'messages' => [['type' => 'text', 'text' => "กรอกหมายเลขโทรศัพท์ที่คุณลงทะเบียนไว้กับ Confideen Family ค่ะ" ]]
+              ];
+
+            break;
+
+            case "ลืมรหัสผ่าน" :
+            case "Password" :
+
+        		  //---------------- get data -----------------//
+        		  //$output     = api("GET","/authen/detail/" . $userID);
+
+              // บันทึกเหตุการณ์ล่าสุดว่าขอเปลี่ยนรหัสผ่าน
+
+              $data =
+              [
+                'replyToken' => $reply_token,
+                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                //'messages' => [['type' => 'text', 'text' => $text ]]
+                'messages' => [['type' => 'text', 'text' => "กรอกหมายเลขโทรศัพท์ที่คุณลงทะเบียนไว้กับ Confideen Family ค่ะ" ]]
+              ];
+
+            break;
+
+            case "หมายเลขพัสดุ" :
+            case "Tracking" :
+
+        		  //---------------- get data -----------------//
+        		  //$output     = api("GET","/authen/detail/" . $userID);
+
+              // บันทึกเหตุการณ์ล่าสุดว่าขอเลข Tracking Number
+
+              $data =
+              [
+                'replyToken' => $reply_token,
+                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                //'messages' => [['type' => 'text', 'text' => $text ]]
+                'messages' => [['type' => 'text', 'text' => "กรอกหมายเลขโทรศัพท์ ของลูกค้าที่สั่งซื้อล่าสุดค่ะ" ]]
               ];
 
             break;
@@ -389,8 +428,26 @@ if ( sizeof($request_array['events']) > 0 )
 
             default:
 
+              //-------------------------------------
+              //ตรวจสอบ Last Event ว่าดำเนินการอะไรค้างอยู่
+              //-------------------------------------
+
+              //ผูกบัญชี ------------------------------
+              //ส่งเบอร์ - Link
+              //ส่ง OTP - Link
+
+              //ลืมรหัสผ่าน ----------------------------
+              //ส่งเบอร์ - Forgot
+              //ส่ง OTP - Forgot
+
+              //ขอ Tracking Number ------------------
+              //ส่งเบอร์ - Tracking
+              //ส่ง OTP - Tracking
+
+
               $reply_text = "ไม่เข้าใจคำถามของคุณ พิมพ์ Help/ช่วยเหลือ เพื่อดูคำสั่งที่สามารถใช้งานได้";
-              $data = [
+              $data =
+              [
                   'replyToken' => $reply_token,
                   //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
                   //'messages' => [['type' => 'text', 'text' => $text ]]
