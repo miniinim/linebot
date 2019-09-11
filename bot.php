@@ -53,7 +53,39 @@ if ( sizeof($request_array['events']) > 0 )
                 'replyToken' => $reply_token,
                 //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
                 //'messages' => [['type' => 'text', 'text' => $text ]]
-                'messages' => [['type' => 'text', 'text' => "บัญชี Line ของคุณยังไม่ผ่านการผูกบัญชี Confideen Family ต้องการผูกบัญชี กรุณาตอบกลับข้อความนี้ด้วยคำสั่ง \"ผูกบัญชี\"" ]]
+                'messages' =>
+                [
+                  [
+                    'type' => 'text',
+                    'text' => "บัญชี Line ของคุณยังไม่ผ่านการผูกบัญชี Confideen Family ต้องการผูกบัญชี กรุณาตอบกลับข้อความนี้ด้วยคำสั่ง \"ผูกบัญชี\"",
+                    'quickReply' =>
+                    [
+                      'items' =>
+                      [
+                        [
+                          'type' => 'action',
+                          'action' =>
+                          [
+                            'type' => 'message',
+                            'label' => 'Message',
+                            'text' => 'ผูกบัญชี',
+                          ]
+                        ],
+                        [
+                          'type' => 'action',
+                          'action' =>
+                          [
+                            'type' => 'postback',
+                            'label' => 'Postback',
+                            'data' => 'action=buy&itemid=123',
+                            'displayText' => 'Buy',
+                          ]
+                        ]
+
+                      ]
+                    ]
+                  ]
+                ]
               ];
             }
             break;
