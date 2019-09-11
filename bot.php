@@ -56,8 +56,20 @@ if ( sizeof($request_array['events']) > 0 )
                 'messages' => [['type' => 'text', 'text' => "บัญชี Line ของคุณยังไม่ผ่านการผูกบัญชี Confideen Family ต้องการผูกบัญชี กรุณาตอบกลับข้อความนี้ด้วยคำสั่ง \"ผูกบัญชี\"" ]]
               ];
             }
+            break;
 
+            case "ผูกบัญชี" :
+            case "Link" :
 
+        		//---------------- get data -----------------//
+        		//$output     = api("GET","/authen/detail/" . $userID);
+              $data =
+              [
+                'replyToken' => $reply_token,
+                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                //'messages' => [['type' => 'text', 'text' => $text ]]
+                'messages' => [['type' => 'text', 'text' => "กรอกหมายเลขโทรศัพท์ที่คุณลงทะเบียนไว้กับ Confideen Family ค่ะ" ]]
+              ];
 
             break;
 
