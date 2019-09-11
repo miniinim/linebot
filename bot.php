@@ -30,8 +30,7 @@ if ( sizeof($request_array['events']) > 0 )
             case "สมาชิก" :
 
         		//---------------- get data -----------------//
-        		$output     = engine::api("get", "/lesson/list");
-
+        		$output     = api("get", "/lesson/list");
             $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : Trainnee Account \nรหัสนักธุรกิจ : BC6201669 \nอีเมล์ : the.miniinim@gmail.com \nโทร : (095) 652-8573 - {$userID}";
 
             $data =
