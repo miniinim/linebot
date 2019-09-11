@@ -67,7 +67,7 @@ if ( sizeof($request_array['events']) > 0 )
                           'action' =>
                           [
                             'type' => 'message',
-                            'label' => 'Message',
+                            'label' => 'ผูกบัญชี Confideen',
                             'text' => 'ผูกบัญชี',
                           ]
                         ],
@@ -75,10 +75,9 @@ if ( sizeof($request_array['events']) > 0 )
                           'type' => 'action',
                           'action' =>
                           [
-                            'type' => 'postback',
-                            'label' => 'Postback',
-                            'data' => 'action=buy&itemid=123',
-                            'displayText' => 'Buy',
+                            'type' => 'message',
+                            'label' => 'ลองอีกครั้ง',
+                            'text' => 'ข้อมูลสมาชิก',
                           ]
                         ]
 
