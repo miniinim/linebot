@@ -34,7 +34,7 @@ if ( sizeof($request_array['events']) > 0 )
 
             $test_connect = api_connect("GET","/authen/detail/" . $userID,"");
 
-            $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : Trainnee Account \nรหัสนักธุรกิจ : BC6201669 \nอีเมล์ : the.miniinim@gmail.com \nโทร : (095) 652-8573 - {$userID} = {$test_connect['uid']}";
+            $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : Trainnee Account \nรหัสนักธุรกิจ : BC6201669 \nอีเมล์ : the.miniinim@gmail.com \nโทร : (095) 652-8573 - {$userID} = {$test_connect['member']['mem_firstname']}";
 
             $data =
             [
