@@ -31,7 +31,10 @@ if ( sizeof($request_array['events']) > 0 )
 
         		//---------------- get data -----------------//
         		//$output     = api("GET","/authen/detail/" . $userID);
-            $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : Trainnee Account \nรหัสนักธุรกิจ : BC6201669 \nอีเมล์ : the.miniinim@gmail.com \nโทร : (095) 652-8573 - {$userID}";
+
+            $test_connect = api_connect("GET","/authen/detail/" . $userID,"");
+
+            $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : Trainnee Account \nรหัสนักธุรกิจ : BC6201669 \nอีเมล์ : the.miniinim@gmail.com \nโทร : (095) 652-8573 - {$userID} = {$test_connect['uid']}";
 
             $data =
             [
@@ -364,7 +367,7 @@ function send_reply_message($url, $post_header, $post_body)
     return $result;
 }
 
-function api($get, $call, $data)
+function api_connect($get, $call, $data)
 {
 
 	$apiKey 	  = "8rMz65o3D0E";
@@ -378,7 +381,7 @@ function api($get, $call, $data)
 			//------------------------- API -------------------------------------------
 			$header = array();
 			$header[] = 'Content-length: 0';
-			$header[] = 'Content-type: application/json';
+			$header[] = 'Content-type: application/json;charset=utf-8';
 			$header[] = "api-key: {$apiKey}";
 			$header[] = "secret-key: {$secretKey}";
 			//------------------------- Return -------------------------------------------
@@ -389,7 +392,8 @@ function api($get, $call, $data)
 			$response_json = curl_exec($ch);
 			curl_close($ch);
 			//------------------------- Return -------------------------------------------
-			$output = json_decode($response_json, true);
+			//$output = json_decode($response_json, true);
+			$output = unserialize(base64_decode($response_json));
 			//-------------------------------------------------------------------------------
 			//------------------------- Return -------------------------------------------
 			return $output;
