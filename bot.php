@@ -31,7 +31,6 @@ if ( sizeof($request_array['events']) > 0 )
 
         		//---------------- get data -----------------//
         		//$output     = api("GET","/authen/detail/" . $userID);
-
             $test_connect = api_connect("GET","/authen/detail/" . $userID,"");
 
             $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : {$test_connect['member']['mem_firstname']} {$test_connect['member']['mem_lastname']} \nรหัสนักธุรกิจ : {$test_connect['member']['mem_code']} \nอีเมล์ : {$test_connect['member']['mem_email']} \nโทร : {$test_connect['member']['mem_phone']}";
@@ -41,8 +40,6 @@ if ( sizeof($request_array['events']) > 0 )
               $data =
               [
                 'replyToken' => $reply_token,
-                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
-                //'messages' => [['type' => 'text', 'text' => $text ]]
                 'messages' => [['type' => 'text', 'text' => $reply_text ]]
               ];
             }
@@ -51,8 +48,6 @@ if ( sizeof($request_array['events']) > 0 )
               $data =
               [
                 'replyToken' => $reply_token,
-                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
-                //'messages' => [['type' => 'text', 'text' => $text ]]
                 'messages' =>
                 [
                   [
