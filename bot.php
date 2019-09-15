@@ -32,8 +32,7 @@ if ( sizeof($request_array['events']) > 0 )
         		//---------------- get data -----------------//
         		//$output     = api("GET","/authen/detail/" . $userID);
             $test_connect = api_connect("GET","/authen/detail/" . $userID,"");
-
-            $reply_text = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : {$test_connect['member']['mem_firstname']} {$test_connect['member']['mem_lastname']} \nรหัสนักธุรกิจ : {$test_connect['member']['mem_code']} \nอีเมล์ : {$test_connect['member']['mem_email']} \nโทร : {$test_connect['member']['mem_phone']}";
+            $reply_text   = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : {$test_connect['member']['mem_firstname']} {$test_connect['member']['mem_lastname']} \nรหัสนักธุรกิจ : {$test_connect['member']['mem_code']} \nอีเมล์ : {$test_connect['member']['mem_email']} \nโทร : {$test_connect['member']['mem_phone']}";
 
             if($test_connect['ini'] == "true")
             {
@@ -498,7 +497,65 @@ if ( sizeof($request_array['events']) > 0 )
                     $data =
                     [
                       'replyToken' => $reply_token,
-                      'messages' => [['type' => 'text', 'text' => $check_log_connect['return'] ]]
+                      'messages' =>
+                      [
+                        [
+                          'type' => 'text',
+                          'text' => $check_log_connect['return'],
+                          'quickReply' =>
+                          [
+                            'items' =>
+                            [
+                              [
+                                'type' => 'action',
+                                'action' =>
+                                [
+                                  'type' => 'message',
+                                  'label' => 'ดูข้อมูลสมาชิก',
+                                  'text' => 'ข้อมูลสมาชิก',
+                                ]
+                              ],
+                              [
+                                'type' => 'action',
+                                'action' =>
+                                [
+                                  'type' => 'message',
+                                  'label' => 'ดูยอดขาย',
+                                  'text' => 'ยอดขาย',
+                                ]
+                              ],
+                              [
+                                'type' => 'action',
+                                'action' =>
+                                [
+                                  'type' => 'message',
+                                  'label' => 'ดูโบนัสสายงาน',
+                                  'text' => 'โบนัส',
+                                ]
+                              ],
+                              [
+                                'type' => 'action',
+                                'action' =>
+                                [
+                                  'type' => 'message',
+                                  'label' => 'ลืมรหัสผ่าน',
+                                  'text' => 'ลืมรหัสผ่าน',
+                                ]
+                              ],
+                              [
+                                'type' => 'action',
+                                'action' =>
+                                [
+                                  'type' => 'message',
+                                  'label' => 'ดูหมายเลขพัสดุ',
+                                  'text' => 'หมายเลขพัสดุ',
+                                ]
+                              ]
+
+                            ]
+                          ]
+                        ]
+                      ]
                     ];
                   }
                   else
