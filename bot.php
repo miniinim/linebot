@@ -454,24 +454,12 @@ if ( sizeof($request_array['events']) > 0 )
                 case "connect":
 
                 $phone        = $text;
-                $mobile_valid = preg_match('/^[0-9]{10}+$/', $phone);
 
-                if($mobile_valid)
-                {
-                  $data =
-                  [
-                      'replyToken' => $reply_token,
-                      'messages' => [['type' => 'text', 'text' => "เบอร์ไม่ถูกต้อง" ]]
-                  ];
-                }
-                else
-                {
-                  $data =
-                  [
-                      'replyToken' => $reply_token,
-                      'messages' => [['type' => 'text', 'text' => "เบอร์ถูกต้อง" ]]
-                  ];
-                }
+                $data =
+                [
+                    'replyToken' => $reply_token,
+                    'messages' => [['type' => 'text', 'text' => $logs_action]]
+                ];
 
                 break;
 
