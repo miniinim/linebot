@@ -532,26 +532,7 @@ if ( sizeof($request_array['events']) > 0 )
                                   'label' => 'ดูโบนัสสายงาน',
                                   'text' => 'โบนัส',
                                 ]
-                              ],
-                              [
-                                'type' => 'action',
-                                'action' =>
-                                [
-                                  'type' => 'message',
-                                  'label' => 'ลืมรหัสผ่าน',
-                                  'text' => 'ลืมรหัสผ่าน',
-                                ]
-                              ],
-                              [
-                                'type' => 'action',
-                                'action' =>
-                                [
-                                  'type' => 'message',
-                                  'label' => 'ดูหมายเลขพัสดุ',
-                                  'text' => 'หมายเลขพัสดุ',
-                                ]
                               ]
-
                             ]
                           ]
                         ]
