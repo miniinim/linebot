@@ -460,11 +460,23 @@ if ( sizeof($request_array['events']) > 0 )
                 {
                   $check_log_connect = api_connect("GET","/authen/request-otp/" . $userID . "/" . $phone,"");
 
-                  $data =
-                  [
-                    'replyToken' => $reply_token,
-                    'messages' => [['type' => 'text', 'text' => "กรุณากรอกรหัส OTP 4 หลักที่ได้รับจาก SMS ค่ะ" ]]
-                  ];
+                  if($check_log_connect['ini'] == "true")
+                  {
+                    $data =
+                    [
+                      'replyToken' => $reply_token,
+                      'messages' => [['type' => 'text', 'text' => "กรุณากรอกรหัส OTP 4 หลักที่ได้รับจาก SMS ค่ะ" ]]
+                    ];
+                  }
+                  else
+                  {
+                    $data =
+                    [
+                      'replyToken' => $reply_token,
+                      'messages' => [['type' => 'text', 'text' => $check_log_connect['return'] ]]
+                    ];
+                  }
+
                 }
                 else
                 {
@@ -480,13 +492,13 @@ if ( sizeof($request_array['events']) > 0 )
                 case "send-otp":
 
                 $otp       = $text;
-                $otp_valid = preg_match('/^[0-9]{4}+$/', $otp);
+                $otp_valid = preg_match('/^[0-9]{6}+$/', $otp);
 
                 if($otp_valid)
                 {
                   $check_log_connect = api_connect("GET","/authen/check-otp/" . $userID . "/" . $otp,"");
 
-                  if($check_log_connect['ini']=="true")
+                  if($check_log_connect['ini'] == "true")
                   {
                     $data =
                     [
