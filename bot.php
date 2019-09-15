@@ -449,74 +449,9 @@ if ( sizeof($request_array['events']) > 0 )
               // บันทึกเหตุการณ์ล่าสุดว่าขอผูกบัญชี
               $logs_action = $check_log_connect['action'];
 
-              switch ($logs_action)
+              if($logs_action=="" || $logs_action==NULL)
               {
-                case "connect":
-
-                $phone        = $text;
-                $mobile_valid = preg_match('/^[0-9]{10}+$/', $phone);
-
-                if($mobile_valid)
-                {
-                  $check_log_connect = api_connect("GET","/authen/request-otp/" . $userID . "/" . $phone,"");
-
-                  $data =
-                  [
-                    'replyToken' => $reply_token,
-                    'messages' => [['type' => 'text', 'text' => "กรุณากรอกรหัส OTP 4 หลักที่ได้รับจาก SMS ค่ะ" ]]
-                  ];
-                }
-                else
-                {
-                  $data =
-                  [
-                    'replyToken' => $reply_token,
-                    'messages' => [['type' => 'text', 'text' => "เบอร์ไม่ถูกต้อง" ]]
-                  ];
-                }
-
-                break;
-
-                case "send-otp":
-
-                $otp       = $text;
-                $otp_valid = preg_match('/^[0-9]{4}+$/', $otp);
-
-                if($otp_valid)
-                {
-                  $check_log_connect = api_connect("GET","/authen/check-otp/" . $userID . "/" . $otp,"");
-
-                  if($check_log_connect['ini']=="true")
-                  {
-                    $data =
-                    [
-                      'replyToken' => $reply_token,
-                      'messages' => [['type' => 'text', 'text' => $check_log_connect['return'] ]]
-                    ];
-                  }
-                  else
-                  {
-                    $data =
-                    [
-                      'replyToken' => $reply_token,
-                      'messages' => [['type' => 'text', 'text' => $check_log_connect['return'] ]]
-                    ];
-                  }
-
-                }
-                else
-                {
-                  $data =
-                  [
-                    'replyToken' => $reply_token,
-                    'messages' => [['type' => 'text', 'text' => "เบอร์ไม่ถูกต้อง" ]]
-                  ];
-                }
-
-                break;
-
-                default:
-    						//------------------ RETURN ERROR -----------------
+                //------------------ RETURN ERROR -----------------
                 $message_text = "ไม่เข้าใจคำถามของคุณ พิมพ์ Help/ช่วยเหลือ เพื่อดูคำสั่งที่สามารถใช้งานได้";
                 $data =
                 [
@@ -526,6 +461,76 @@ if ( sizeof($request_array['events']) > 0 )
                   'messages' => [['type' => 'text', 'text' => $reply_text ]]
                 ];
               }
+              else
+              {
+                switch ($logs_action)
+                {
+                  case "connect":
+
+                  $phone        = $text;
+                  $mobile_valid = preg_match('/^[0-9]{10}+$/', $phone);
+
+                  if($mobile_valid)
+                  {
+                    $check_log_connect = api_connect("GET","/authen/request-otp/" . $userID . "/" . $phone,"");
+
+                    $data =
+                    [
+                      'replyToken' => $reply_token,
+                      'messages' => [['type' => 'text', 'text' => "กรุณากรอกรหัส OTP 4 หลักที่ได้รับจาก SMS ค่ะ" ]]
+                    ];
+                  }
+                  else
+                  {
+                    $data =
+                    [
+                      'replyToken' => $reply_token,
+                      'messages' => [['type' => 'text', 'text' => "เบอร์ไม่ถูกต้อง" ]]
+                    ];
+                  }
+
+                  break;
+
+                  case "send-otp":
+
+                  $otp       = $text;
+                  $otp_valid = preg_match('/^[0-9]{4}+$/', $otp);
+
+                  if($otp_valid)
+                  {
+                    $check_log_connect = api_connect("GET","/authen/check-otp/" . $userID . "/" . $otp,"");
+
+                    if($check_log_connect['ini']=="true")
+                    {
+                      $data =
+                      [
+                        'replyToken' => $reply_token,
+                        'messages' => [['type' => 'text', 'text' => $check_log_connect['return'] ]]
+                      ];
+                    }
+                    else
+                    {
+                      $data =
+                      [
+                        'replyToken' => $reply_token,
+                        'messages' => [['type' => 'text', 'text' => $check_log_connect['return'] ]]
+                      ];
+                    }
+
+                  }
+                  else
+                  {
+                    $data =
+                    [
+                      'replyToken' => $reply_token,
+                      'messages' => [['type' => 'text', 'text' => "เบอร์ไม่ถูกต้อง" ]]
+                    ];
+                  }
+
+                  break;
+                }
+              }
+
 
               //ส่งเบอร์ - Link
               //ส่ง OTP - Link
