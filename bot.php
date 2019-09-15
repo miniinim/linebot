@@ -486,11 +486,23 @@ if ( sizeof($request_array['events']) > 0 )
                 {
                   $check_log_connect = api_connect("GET","/authen/check-otp/" . $userID . "/" . $otp,"");
 
-                  $data =
-                  [
-                    'replyToken' => $reply_token,
-                    'messages' => [['type' => 'text', 'text' => "เชื่อมต่อบัญชีเรียบร้อยแล้ว" ]]
-                  ];
+                  if($check_log_connect['ini']=="true")
+                  {
+                    $data =
+                    [
+                      'replyToken' => $reply_token,
+                      'messages' => [['type' => 'text', 'text' => $check_log_connect['return'] ]]
+                    ];
+                  }
+                  else
+                  {
+                    $data =
+                    [
+                      'replyToken' => $reply_token,
+                      'messages' => [['type' => 'text', 'text' => $check_log_connect['return'] ]]
+                    ];
+                  }
+
                 }
                 else
                 {
