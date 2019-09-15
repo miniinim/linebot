@@ -441,13 +441,20 @@ if ( sizeof($request_array['events']) > 0 )
               //-------------------------------------
               //ตรวจสอบ Last Event ว่าดำเนินการอะไรค้างอยู่
               //-------------------------------------
-
               //ผูกบัญชี ------------------------------
-
               $check_log_connect = api_connect("GET","/authen/logs/" . $userID,"");
 
               // บันทึกเหตุการณ์ล่าสุดว่าขอผูกบัญชี
               $logs_action = $check_log_connect['action'];
+
+              $message_text = "ไม่เข้าใจคำถามของคุณ พิมพ์ Help/ช่วยเหลือ เพื่อดูคำสั่งที่สามารถใช้งานได้ - " . $check_log_connect['ini'];
+              $data =
+              [
+                'replyToken' => $reply_token,
+                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                //'messages' => [['type' => 'text', 'text' => $text ]]
+                'messages' => [['type' => 'text', 'text' => $reply_text ]]
+              ];
 
               if($check_log_connect['ini'] == "false")
               {
