@@ -482,7 +482,7 @@ if ( sizeof($request_array['events']) > 0 )
                 $otp       = $text;
                 $otp_valid = preg_match('/^[0-9]{4}+$/', $otp);
 
-                if($mobile_valid)
+                if($otp_valid)
                 {
                   $check_log_connect = api_connect("GET","/authen/check-otp/" . $userID . "/" . $otp,"");
 
