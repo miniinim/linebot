@@ -458,10 +458,12 @@ if ( sizeof($request_array['events']) > 0 )
 
                 if($mobile_valid)
                 {
+                  $check_log_connect = api_connect("GET","/authen/request-otp/" . $userID . "/" . $phone,"");
+
                   $data =
                   [
                     'replyToken' => $reply_token,
-                    'messages' => [['type' => 'text', 'text' => "เบอร์ไม่ถูกต้อง" ]]
+                    'messages' => [['type' => 'text', 'text' => "เบอร์ถูกต้อง" ]]
                   ];
                 }
                 else
@@ -469,7 +471,7 @@ if ( sizeof($request_array['events']) > 0 )
                   $data =
                   [
                     'replyToken' => $reply_token,
-                    'messages' => [['type' => 'text', 'text' => "เบอร์ถูกต้อง" ]]
+                    'messages' => [['type' => 'text', 'text' => "เบอร์ไม่ถูกต้อง" ]]
                   ];
                 }
 
