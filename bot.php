@@ -449,7 +449,7 @@ if ( sizeof($request_array['events']) > 0 )
               // บันทึกเหตุการณ์ล่าสุดว่าขอผูกบัญชี
               $logs_action = $check_log_connect['action'];
 
-              if($logs_action=="" || $logs_action==NULL)
+              if(!isset($logs_action))
               {
                 //------------------ RETURN ERROR -----------------
                 $message_text = "ไม่เข้าใจคำถามของคุณ พิมพ์ Help/ช่วยเหลือ เพื่อดูคำสั่งที่สามารถใช้งานได้";
