@@ -463,7 +463,33 @@ if ( sizeof($request_array['events']) > 0 )
                   $data =
                   [
                     'replyToken' => $reply_token,
-                    'messages' => [['type' => 'text', 'text' => "เบอร์ถูกต้อง" ]]
+                    'messages' => [['type' => 'text', 'text' => "กรุณากรอกรหัส OTP 4 หลักที่ได้รับจาก SMS ค่ะ" ]]
+                  ];
+                }
+                else
+                {
+                  $data =
+                  [
+                    'replyToken' => $reply_token,
+                    'messages' => [['type' => 'text', 'text' => "เบอร์ไม่ถูกต้อง" ]]
+                  ];
+                }
+
+                break;
+
+                case "send-otp":
+
+                $otp       = $text;
+                $otp_valid = preg_match('/^[0-9]{4}+$/', $otp);
+
+                if($mobile_valid)
+                {
+                  $check_log_connect = api_connect("GET","/authen/check-otp/" . $userID . "/" . $otp,"");
+
+                  $data =
+                  [
+                    'replyToken' => $reply_token,
+                    'messages' => [['type' => 'text', 'text' => "เชื่อมต่อบัญชีเรียบร้อยแล้ว" ]]
                   ];
                 }
                 else
