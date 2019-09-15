@@ -95,14 +95,24 @@ if ( sizeof($request_array['events']) > 0 )
         		  //---------------- get data -----------------//
         		  //$output     = api("GET","/authen/detail/" . $userID);
 
+              $test_connect = api_connect("GET","/authen/connect/" . $userID,"");
+
               // บันทึกเหตุการณ์ล่าสุดว่าขอผูกบัญชี
+              if($test_connect['ini'] == "false")
+              {
+                $message_text = $test_connect['return'];
+              }
+              else
+              {
+                $message_text = "กรอกหมายเลขโทรศัพท์ที่คุณลงทะเบียนไว้กับ Confideen Family ค่ะ";
+              }
 
               $data =
               [
                 'replyToken' => $reply_token,
                 //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
                 //'messages' => [['type' => 'text', 'text' => $text ]]
-                'messages' => [['type' => 'text', 'text' => "กรอกหมายเลขโทรศัพท์ที่คุณลงทะเบียนไว้กับ Confideen Family ค่ะ" ]]
+                'messages' => [['type' => 'text', 'text' => $message_text ]]
               ];
 
             break;
