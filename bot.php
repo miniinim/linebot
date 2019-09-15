@@ -443,6 +443,50 @@ if ( sizeof($request_array['events']) > 0 )
               //-------------------------------------
 
               //ผูกบัญชี ------------------------------
+
+              $check_log_connect = api_connect("GET","/authen/logs/" . $userID,"");
+
+              // บันทึกเหตุการณ์ล่าสุดว่าขอผูกบัญชี
+              $logs_action = $check_log_connect['action'];
+
+              switch ($logs_action)
+              {
+                case "connect":
+
+                $phone        = $text;
+                $mobile_valid = preg_match('/^[0-9]{10}+$/', $phone);
+
+                if($mobile_valid)
+                {
+                  $data =
+                  [
+                      'replyToken' => $reply_token,
+                      'messages' => [['type' => 'text', 'text' => "เบอร์ไม่ถูกต้อง" ]]
+                  ];
+                }
+                else
+                {
+                  $data =
+                  [
+                      'replyToken' => $reply_token,
+                      'messages' => [['type' => 'text', 'text' => "เบอร์ถูกต้อง" ]]
+                  ];
+                }
+
+                break;
+
+                default:
+    						//------------------ RETURN ERROR -----------------
+                $message_text = "ไม่เข้าใจคำถามของคุณ พิมพ์ Help/ช่วยเหลือ เพื่อดูคำสั่งที่สามารถใช้งานได้";
+                $data =
+                [
+                    'replyToken' => $reply_token,
+                    //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                    //'messages' => [['type' => 'text', 'text' => $text ]]
+                    'messages' => [['type' => 'text', 'text' => $reply_text ]]
+                ];
+              }
+
               //ส่งเบอร์ - Link
               //ส่ง OTP - Link
 
@@ -453,16 +497,6 @@ if ( sizeof($request_array['events']) > 0 )
               //ขอ Tracking Number ------------------
               //ส่งเบอร์ - Tracking
               //ส่ง OTP - Tracking
-
-
-              $reply_text = "ไม่เข้าใจคำถามของคุณ พิมพ์ Help/ช่วยเหลือ เพื่อดูคำสั่งที่สามารถใช้งานได้";
-              $data =
-              [
-                  'replyToken' => $reply_token,
-                  //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
-                  //'messages' => [['type' => 'text', 'text' => $text ]]
-                  'messages' => [['type' => 'text', 'text' => $reply_text ]]
-              ];
 
             break;
         }
