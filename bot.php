@@ -454,12 +454,24 @@ if ( sizeof($request_array['events']) > 0 )
                 case "connect":
 
                 $phone        = $text;
+                $mobile_valid = preg_match('/^[0-9]{10}+$/', $phone);
 
-                $data =
-                [
+                if($mobile_valid)
+                {
+                  $data =
+                  [
                     'replyToken' => $reply_token,
-                    'messages' => [['type' => 'text', 'text' => $logs_action]]
-                ];
+                    'messages' => [['type' => 'text', 'text' => "เบอร์ไม่ถูกต้อง" ]]
+                  ];
+                }
+                else
+                {
+                  $data =
+                  [
+                    'replyToken' => $reply_token,
+                    'messages' => [['type' => 'text', 'text' => "เบอร์ถูกต้อง" ]]
+                  ];
+                }
 
                 break;
 
@@ -468,10 +480,10 @@ if ( sizeof($request_array['events']) > 0 )
                 $message_text = "ไม่เข้าใจคำถามของคุณ พิมพ์ Help/ช่วยเหลือ เพื่อดูคำสั่งที่สามารถใช้งานได้";
                 $data =
                 [
-                    'replyToken' => $reply_token,
-                    //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
-                    //'messages' => [['type' => 'text', 'text' => $text ]]
-                    'messages' => [['type' => 'text', 'text' => $reply_text ]]
+                  'replyToken' => $reply_token,
+                  //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                  //'messages' => [['type' => 'text', 'text' => $text ]]
+                  'messages' => [['type' => 'text', 'text' => $reply_text ]]
                 ];
               }
 
