@@ -643,7 +643,7 @@ if ( sizeof($request_array['events']) > 0 )
                 $request  = getProfile($url, $POST_HEADER);
                 $profile  = json_decode($request, true);
                 $encode   = strtr(base64_encode($text), '+/', '-_');
-                $connect  = api_connect("GET","/authen/chat/" . $userID . "/" . $encode . "/" . $profile['displayName'], "");
+                $connect  = api_connect("GET","/authen/chat/" . $userID . "/" . $encode . "/" . $profile['displayName'] . "/" . $profile['pictureUrl'], "");
 
                 if($connect['ini'] == "true")
                 {
