@@ -7,8 +7,12 @@ $POST_HEADER    = array('Content-Type: application/json', 'Authorization: Bearer
 
 $data =
 [
-  'to'        => "U7e31a728502ad029ba23f1b6d21a7537",
-  'messages'  => [['type' => 'text', 'text' => "ระบบกำลังจัดเตรียมสินค้าที่สั่งโดยลูกค้าของนักธุรกิจ xxxx หลังจากได้รับ Tracking Number แล้ว จะมีการอัพเดตให้สมาชิกอีกครั้งค่ะ" ]]
+  'to'        => "U512f4baa1d135d6991436b5b462826f2",
+  'messages'  =>
+  [
+    ['type' => 'text', 'text' => "ระบบกำลังจัดเตรียมสินค้าที่สั่งโดยลูกค้าของนักธุรกิจ xxxx หลังจากได้รับ Tracking Number แล้ว จะมีการอัพเดตให้สมาชิกอีกครั้งค่ะ" ],
+    ['type' => 'sticker','packageId' => "11537",'stickerId' => "52002744" ]
+  ]
 ];
 
 $post_body    = json_encode($data, JSON_UNESCAPED_UNICODE);
