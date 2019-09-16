@@ -313,6 +313,7 @@ if ( sizeof($request_array['events']) > 0 )
             case "คะแนนธุรกิจ" :
 
             $test_connect = api_connect("GET","/authen/detail/" . $userID,"");
+
             if($test_connect['ini'] == "true")
             {
               $jsonFlex = [
@@ -518,12 +519,6 @@ if ( sizeof($request_array['events']) > 0 )
                 ]
               ];
             }
-
-              $data =
-              [
-                'replyToken'  => $reply_token,
-                'messages'    => [$jsonFlex]
-              ];
 
             break;
 
