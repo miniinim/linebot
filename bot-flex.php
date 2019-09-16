@@ -10,11 +10,12 @@ $data =
   'to'        => "U7e31a728502ad029ba23f1b6d21a7537",
   'messages'  =>
   [
-    ['type' => 'text', 'text' => "ระบบกำลังจัดเตรียมสินค้าที่สั่งโดยลูกค้าของนักธุรกิจ xxxx หลังจากได้รับ Tracking Number แล้ว จะมีการอัพเดตให้สมาชิกอีกครั้งค่ะ" ],
-    ['type' => 'sticker','packageId' => "11537",'stickerId' => "52002744" ],
-    ['type' => 'image','originalContentUrl' => "https://mokmoon.com/images/LINEDevelopers.png",'previewImageUrl' => "https://mokmoon.com/images/LINEDEV.png" ],
+    ['type' => 'text', 'text' => "บัญชีของคุณได้รับยอดโอน Cashback รอบประจำวันที่ 1 ก.ย. 2562 - 30 ก.ย. 2562" ],
+    ['type' => 'text', 'text' => "เป็นเงิน 1,000,000 บาท" ],
+    ['type' => 'sticker','packageId' => "11537",'stickerId' => "52002759" ],
+    /*['type' => 'image','originalContentUrl' => "https://mokmoon.com/images/LINEDevelopers.png",'previewImageUrl' => "https://mokmoon.com/images/LINEDEV.png" ],
     ['type' => 'video','originalContentUrl' => "https://mokmoon.com/videos/Brown.mp4",'previewImageUrl' => "https://linefriends.com/img/bangolufsen/img_og.jpg" ],
-    ['type' => 'location','title' => "LINE Company (Thailand) Limited",'address' => "127 อาคารเกษรทาวเวอร์ ชั้น17 ถ.ราชดำริ แขวงลุมพินี เขตปทุมวัน กรุงเทพฯ 10330",'latitude' => "13.7460089",'longitude' => "100.5386192" ]
+    ['type' => 'location','title' => "LINE Company (Thailand) Limited",'address' => "127 อาคารเกษรทาวเวอร์ ชั้น17 ถ.ราชดำริ แขวงลุมพินี เขตปทุมวัน กรุงเทพฯ 10330",'latitude' => "13.7460089",'longitude' => "100.5386192" ]*/
   ]
 ];
 
