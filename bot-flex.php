@@ -8,7 +8,7 @@ $POST_HEADER    = array('Content-Type: application/json', 'Authorization: Bearer
 $data =
 [
   'notificationDisabled' => false,
-  'to'        => "U7e31a728502ad029ba23f1b6d21a7537",
+  'to'        => "U512f4baa1d135d6991436b5b462826f2",
   'messages'  =>
   [
     ['type' => 'text', 'text' => "บัญชีของคุณได้รับยอดโอน Cashback รอบประจำวันที่ 1 ก.ย. 2562 - 30 ก.ย. 2562" ],
