@@ -32,10 +32,11 @@ if ( sizeof($request_array['events']) > 0 )
         		//---------------- get data -----------------//
         		//$output     = api("GET","/authen/detail/" . $userID);
             $test_connect = api_connect("GET","/authen/detail/" . $userID,"");
-            $reply_text   = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : {$test_connect['member']['mem_firstname']} {$test_connect['member']['mem_lastname']} \nรหัสนักธุรกิจ : {$test_connect['member']['mem_code']} \nอีเมล์ : {$test_connect['member']['mem_email']} \nโทร : {$test_connect['member']['mem_phone']}";
 
             if($test_connect['ini'] == "true")
             {
+              $reply_text   = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : {$test_connect['member']['mem_firstname']} {$test_connect['member']['mem_lastname']} \nรหัสนักธุรกิจ : {$test_connect['member']['mem_code']} \nอีเมล์ : {$test_connect['member']['mem_email']} \nโทร : {$test_connect['member']['mem_phone']}";
+
               $data =
               [
                 'replyToken' => $reply_token,
