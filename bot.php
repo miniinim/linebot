@@ -638,7 +638,17 @@ if ( sizeof($request_array['events']) > 0 )
 
                 default:
     						//------------------ RETURN ERROR -----------------
-                $message_text = "ไม่เข้าใจคำถามของคุณ พิมพ์ Help/ช่วยเหลือ เพื่อดูคำสั่งที่สามารถใช้งานได้";
+                $message_ask  = $text;
+                $message_text = "ส่งข้อความของคุณให้ทีมงานแล้ว กรุณารอการตอบกลับจากทีมงานค่ะ";
+
+                $chat =
+                [
+                  'messages' => $message_ask,
+                ];
+
+                $chat               = json_encode( $chat, JSON_UNESCAPED_UNICODE );
+                $check_log_connect  = api_connect("POST","/authen/check-otp/" . $userID,$chat);
+
                 $data =
                 [
                   'replyToken' => $reply_token,
