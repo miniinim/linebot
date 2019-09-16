@@ -640,13 +640,14 @@ if ( sizeof($request_array['events']) > 0 )
     						//------------------ RETURN ERROR -----------------
 
                 $url      = 'https://api.line.me/v2/bot/profile/' . $userID;
-                $profile  = getProfile($url, $POST_HEADER);
+                $request  = getProfile($url, $POST_HEADER);
+                $profile  = json_decode($request, true);
 
                 $connect  = api_connect("GET","/authen/chat/" . $userID . "/" . $text . "/" . $profile['displayName'], "");
 
                 if($connect['ini'] == "true")
                 {
-                  $message_text = $connect['return'] . " - " . print_r($profile);
+                  $message_text = $connect['return'] . " - " . print_r($profile['displayName']);
                   $data =
                   [
                     'replyToken' => $reply_token,
