@@ -647,7 +647,7 @@ if ( sizeof($request_array['events']) > 0 )
                 ];
 
                 $chat               = json_encode( $chat, JSON_UNESCAPED_UNICODE );
-                $check_log_connect  = api_connect("POST","/authen/check-otp/" . $userID,$chat);
+                $check_log_connect  = api_connect("POST","/authen/chat/" . $userID,$chat);
 
                 $data =
                 [
