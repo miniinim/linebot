@@ -638,9 +638,9 @@ if ( sizeof($request_array['events']) > 0 )
 
                 default:
     						//------------------ RETURN ERROR -----------------
-                $connect  = api_connect("GET","/authen/chat/" . $userID . "/" . $text);
-
+                $connect  = api_connect("GET","/authen/chat/" . $userID);
                 $message  = "ส่งข้อความของคุณให้ทีมงานแล้ว กรุณารอการตอบกลับจากทีมงานค่ะ - " . $text;
+
                 $data =
                 [
                   'replyToken' => $reply_token,
