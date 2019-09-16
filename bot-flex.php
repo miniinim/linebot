@@ -7,6 +7,7 @@ $POST_HEADER    = array('Content-Type: application/json', 'Authorization: Bearer
 
 $data =
 [
+  'notificationDisabled' => false,
   'to'        => "U7e31a728502ad029ba23f1b6d21a7537",
   'messages'  =>
   [
