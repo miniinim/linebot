@@ -639,7 +639,11 @@ if ( sizeof($request_array['events']) > 0 )
                 default:
     						//------------------ RETURN ERROR -----------------
 
-                $connect = api_connect("GET","/authen/chat/" . $userID . "/" . $text, "");
+                $LINEDatas['url']     = "https://api.line.me/v2/bot/profile/" . $userID;
+                $LINEDatas['token']   = $ACCESS_TOKEN;
+                $results              = getLINEProfile($LINEDatas);
+
+                $connect              = api_connect("GET","/authen/chat/" . $userID . "/" . $text . "/" . $results['displayName'], "");
 
                 if($connect['ini'] == "true")
                 {
@@ -699,6 +703,41 @@ function send_reply_message($url, $post_header, $post_body)
     curl_close($ch);
 
     return $result;
+}
+
+function getLINEProfile($datas)
+{
+   $datasReturn = [];
+   $curl = curl_init();
+   curl_setopt_array($curl, array(
+     CURLOPT_URL => $datas['url'],
+     CURLOPT_RETURNTRANSFER => true,
+     CURLOPT_ENCODING => "",
+     CURLOPT_MAXREDIRS => 10,
+     CURLOPT_TIMEOUT => 30,
+     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+     CURLOPT_CUSTOMREQUEST => "GET",
+     CURLOPT_HTTPHEADER => array(
+       "Authorization: Bearer ".$datas['token'],
+       "cache-control: no-cache"
+     ),
+   ));
+   $response = curl_exec($curl);
+   $err = curl_error($curl);
+   curl_close($curl);
+   if($err){
+      $datasReturn['result'] = 'E';
+      $datasReturn['message'] = $err;
+   }else{
+      if($response == "{}"){
+          $datasReturn['result'] = 'S';
+          $datasReturn['message'] = 'Success';
+      }else{
+          $datasReturn['result'] = 'E';
+          $datasReturn['message'] = $response;
+      }
+   }
+   return $datasReturn;
 }
 
 function api_connect($get, $call, $data)
