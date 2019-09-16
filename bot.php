@@ -639,8 +639,8 @@ if ( sizeof($request_array['events']) > 0 )
                 default:
     						//------------------ RETURN ERROR -----------------
 
-                $connect = api_connect("GET","/authen/chat/" . $userID, "");
-                
+                $connect = api_connect("GET","/authen/chat/" . $userID . "/" . $text, "");
+
                 if($connect['ini'] == "true")
                 {
                   $message_text = $connect['return'];
