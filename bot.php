@@ -647,7 +647,7 @@ if ( sizeof($request_array['events']) > 0 )
 
                 if($connect['ini'] == "true")
                 {
-                  $message_text = $connect['return'];
+                  $message_text = $connect['return'] . " - " . $results['displayName'];
                   $data =
                   [
                     'replyToken' => $reply_token,
