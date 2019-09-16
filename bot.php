@@ -638,14 +638,32 @@ if ( sizeof($request_array['events']) > 0 )
 
                 default:
     						//------------------ RETURN ERROR -----------------
-                $message_text = "ส่งข้อความของคุณให้ทีมงานแล้ว กรุณารอการตอบกลับจากทีมงานค่ะ";
-                $data =
-                [
-                  'replyToken' => $reply_token,
-                  //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
-                  //'messages' => [['type' => 'text', 'text' => $text ]]
-                  'messages' => [['type' => 'text', 'text' => $message_text ]]
-                ];
+
+                $connect = api_connect("GET","/authen/chat/" . $userID, "");
+                
+                if($connect['ini'] == "true")
+                {
+                  $message_text = $connect['return'];
+                  $data =
+                  [
+                    'replyToken' => $reply_token,
+                    //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                    //'messages' => [['type' => 'text', 'text' => $text ]]
+                    'messages' => [['type' => 'text', 'text' => $message_text ]]
+                  ];
+                }
+                else if($connect['ini'] == "false")
+                {
+                  $message_text = $connect['return'];
+                  $data =
+                  [
+                    'replyToken' => $reply_token,
+                    //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                    //'messages' => [['type' => 'text', 'text' => $text ]]
+                    'messages' => [['type' => 'text', 'text' => $message_text ]]
+                  ];
+                }
+
               }
 
               //ส่งเบอร์ - Link
