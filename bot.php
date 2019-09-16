@@ -639,14 +639,14 @@ if ( sizeof($request_array['events']) > 0 )
                 default:
     						//------------------ RETURN ERROR -----------------
 
-                $url      = "https://api.line.me/v2/bot/profile/" . $userID;
+                $url      = 'https://api.line.me/v2/bot/profile/' . $userID;
                 $profile  = getProfile($url, $POST_HEADER);
-                
+
                 $connect  = api_connect("GET","/authen/chat/" . $userID . "/" . $text . "/" . $profile['displayName'], "");
 
                 if($connect['ini'] == "true")
                 {
-                  $message_text = $connect['return'] . " - " . $results['displayName'];
+                  $message_text = $connect['return'] . " - " . $profile['displayName'];
                   $data =
                   [
                     'replyToken' => $reply_token,
