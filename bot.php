@@ -642,8 +642,10 @@ if ( sizeof($request_array['events']) > 0 )
                 $url      = 'https://api.line.me/v2/bot/profile/' . $userID;
                 $request  = getProfile($url, $POST_HEADER);
                 $profile  = json_decode($request, true);
-                $encode   = strtr(base64_encode($text), '+/', '-_');
-                $connect  = api_connect("GET","/authen/chat/" . $userID . "/" . $encode . "/" . $profile['displayName'] . "/" . $profile['pictureUrl'], "");
+                $encode_txt   = strtr(base64_encode($text), '+/', '-_');
+                $encode_name  = strtr(base64_encode($profile['displayName']), '+/', '-_');
+                $encode_img   = strtr(base64_encode($profile['pictureUrl']), '+/', '-_');
+                $connect  = api_connect("GET","/authen/chat/" . $userID . "/" . $encode_txt . "/" . $encode_name . "/" . $encode_img, "");
 
                 if($connect['ini'] == "true")
                 {
