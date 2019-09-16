@@ -28,69 +28,64 @@ if ( sizeof($request_array['events']) > 0 )
             case "ข้อมูลสมาชิก" :
             case "ประวัติ" :
             case "สมาชิก" :
-
-        		//---------------- get data -----------------//
-        		//$output     = api("GET","/authen/detail/" . $userID);
-            $test_connect = api_connect("GET","/authen/detail/" . $userID,"");
-
-            if($test_connect['ini'] == "true")
-            {
-              $reply_text   = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : {$test_connect['member']['mem_firstname']} {$test_connect['member']['mem_lastname']} \nรหัสนักธุรกิจ : {$test_connect['member']['mem_code']} \nอีเมล์ : {$test_connect['member']['mem_email']} \nโทร : {$test_connect['member']['mem_phone']}";
-              $data =
-              [
-                'replyToken' => $reply_token,
-                'messages' => [['type' => 'text', 'text' => $reply_text ]]
-              ];
-            }
-            else if($test_connect['ini'] == "false")
-            {
-              $data =
-              [
-                'replyToken' => $reply_token,
-                'messages' =>
+          		//----------------------------- ตรวจสอบข้อมูล ---------------------
+              $test_connect = api_connect("GET","/authen/detail/" . $userID,"");
+              if($test_connect['ini'] == "true")
+              {
+                $reply_text   = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : {$test_connect['member']['mem_firstname']} {$test_connect['member']['mem_lastname']} \nรหัสนักธุรกิจ : {$test_connect['member']['mem_code']} \nอีเมล์ : {$test_connect['member']['mem_email']} \nโทร : {$test_connect['member']['mem_phone']}";
+                //Output ---------------------------------------------------------
+                $data =
                 [
+                  'replyToken' => $reply_token,
+                  'messages' => [['type' => 'text', 'text' => $reply_text ]]
+                ];
+              }
+              else if($test_connect['ini'] == "false")
+              {
+                //Output -------------------------------------------------------
+                $data =
+                [
+                  'replyToken' => $reply_token,
+                  'messages' =>
                   [
-                    'type' => 'text',
-                    'text' => "บัญชี Line ของคุณยังไม่ผ่านการผูกบัญชี Confideen Family ต้องการผูกบัญชี กรุณาตอบกลับข้อความนี้ด้วยคำสั่ง \"ผูกบัญชี\"",
-                    'quickReply' =>
                     [
-                      'items' =>
+                      'type' => 'text',
+                      'text' => "บัญชี Line ของคุณยังไม่ผ่านการผูกบัญชี Confideen Family ต้องการผูกบัญชี กรุณาตอบกลับข้อความนี้ด้วยคำสั่ง \"ผูกบัญชี\"",
+                      'quickReply' =>
                       [
+                        'items' =>
                         [
-                          'type' => 'action',
-                          'action' =>
                           [
-                            'type' => 'message',
-                            'label' => 'ผูกบัญชี Confideen',
-                            'text' => 'ผูกบัญชี',
-                          ]
-                        ],
-                        [
-                          'type' => 'action',
-                          'action' =>
+                            'type' => 'action',
+                            'action' =>
+                            [
+                              'type' => 'message',
+                              'label' => 'ผูกบัญชี Confideen',
+                              'text' => 'ผูกบัญชี',
+                            ]
+                          ],
                           [
-                            'type' => 'message',
-                            'label' => 'ลองอีกครั้ง',
-                            'text' => 'ข้อมูลสมาชิก',
+                            'type' => 'action',
+                            'action' =>
+                            [
+                              'type' => 'message',
+                              'label' => 'ลองอีกครั้ง',
+                              'text' => 'ข้อมูลสมาชิก',
+                            ]
                           ]
-                        ]
 
+                        ]
                       ]
                     ]
                   ]
-                ]
-              ];
-            }
+                ];
+              }
             break;
 
             case "ผูกบัญชี" :
             case "Link" :
-
-        		  //---------------- get data -----------------//
-        		  //$output     = api("GET","/authen/detail/" . $userID);
-
+        		  //----------------------------- ตรวจสอบข้อมูล ---------------------
               $test_connect = api_connect("GET","/authen/connect/" . $userID,"");
-
               // บันทึกเหตุการณ์ล่าสุดว่าขอผูกบัญชี
               if($test_connect['ini'] == "false")
               {
@@ -100,51 +95,33 @@ if ( sizeof($request_array['events']) > 0 )
               {
                 $message_text = "กรอกหมายเลขโทรศัพท์ที่คุณลงทะเบียนไว้กับ Confideen Family ค่ะ";
               }
-
               $data =
               [
                 'replyToken' => $reply_token,
-                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
-                //'messages' => [['type' => 'text', 'text' => $text ]]
                 'messages' => [['type' => 'text', 'text' => $message_text ]]
               ];
-
             break;
 
             case "ลืมรหัสผ่าน" :
             case "Password" :
-
-        		  //---------------- get data -----------------//
-        		  //$output     = api("GET","/authen/detail/" . $userID);
-
+        		  //----------------------------- ตรวจสอบข้อมูล ---------------------
               // บันทึกเหตุการณ์ล่าสุดว่าขอเปลี่ยนรหัสผ่าน
-
               $data =
               [
                 'replyToken' => $reply_token,
-                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
-                //'messages' => [['type' => 'text', 'text' => $text ]]
                 'messages' => [['type' => 'text', 'text' => "กรอกหมายเลขโทรศัพท์ที่คุณลงทะเบียนไว้กับ Confideen Family ค่ะ" ]]
               ];
-
             break;
 
             case "หมายเลขพัสดุ" :
             case "Tracking" :
-
-        		  //---------------- get data -----------------//
-        		  //$output     = api("GET","/authen/detail/" . $userID);
-
+        		  //----------------------------- ตรวจสอบข้อมูล ---------------------
               // บันทึกเหตุการณ์ล่าสุดว่าขอเลข Tracking Number
-
               $data =
               [
                 'replyToken' => $reply_token,
-                //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
-                //'messages' => [['type' => 'text', 'text' => $text ]]
                 'messages' => [['type' => 'text', 'text' => "กรอกหมายเลขโทรศัพท์ ของลูกค้าที่สั่งซื้อล่าสุดค่ะ" ]]
               ];
-
             break;
 
             case "Cashback" :
@@ -152,18 +129,122 @@ if ( sizeof($request_array['events']) > 0 )
             case "แคชแบค" :
             case "ยอดขาย" :
 
+            //----------------------------- ตรวจสอบข้อมูล ---------------------
             $test_connect = api_connect("GET","/authen/detail/" . $userID,"");
 
             if($test_connect['ini'] == "true")
             {
-              $data =
-              [
-                'replyToken'  => $reply_token,
-                'messages'    => [$jsonFlex]
-              ];
+              $jsonFlex = [
+                  "type" => "flex",
+                  "altText" => "รายได้จากยอดธุรกิจส่วนตัว",
+                  "contents" => [
+                    "type" => "bubble",
+                    "direction" => "ltr",
+                    "header" => [
+                      "type" => "box",
+                      "layout" => "vertical",
+                      "contents" => [
+                        [
+                          "type" => "text",
+                          "text" => "รายได้จากยอดธุรกิจส่วนตัว",
+                          "size" => "lg",
+                          "align" => "start",
+                          "weight" => "bold",
+                          "color" => "#009813"
+                        ],
+                        [
+                          "type" => "text",
+                          "text" => "ยอดขาย",
+                          "size" => "lg",
+                          "weight" => "bold",
+                          "color" => "#000000"
+                        ],
+                        [
+                          "type" => "text",
+                          "text" => "฿ 150,500.00",
+                          "size" => "3xl",
+                          "weight" => "bold",
+                          "color" => "#000000"
+                        ],
+                        [
+                          "type" => "text",
+                          "text" => "ยอดขายระหว่างวันที่ 11 ส.ค. 2562 - 10 ก.ย. 2562",
+                          "size" => "xs",
+                          "color" => "#B2B2B2"
+                        ],
+                        [
+                          "type" => "text",
+                          "text" => "ยังไม่ถึงรอบจ่าย.",
+                          "margin" => "lg",
+                          "size" => "lg",
+                          "color" => "#000000"
+                        ]
+                      ]
+                    ],
+                    "body" => [
+                      "type" => "box",
+                      "layout" => "vertical",
+                      "contents" => [
+                        [
+                          "type" => "separator",
+                          "color" => "#C3C3C3"
+                        ],
+                        [
+                          "type" => "box",
+                          "layout" => "baseline",
+                          "margin" => "lg",
+                          "contents" => [
+                            [
+                              "type" => "text",
+                              "text" => "Cashback",
+                              "align" => "start",
+                              "color" => "#C3C3C3"
+                            ],
+                            [
+                              "type" => "text",
+                              "text" => "฿ 500.00",
+                              "align" => "end",
+                              "color" => "#000000"
+                            ]
+                          ]
+                        ],
+                        [
+                          "type" => "separator",
+                          "margin" => "lg",
+                          "color" => "#C3C3C3"
+                        ]
+                      ]
+                    ],
+                    "footer" => [
+                      "type" => "box",
+                      "layout" => "horizontal",
+                      "contents" => [
+                        [
+                          "type" => "text",
+                          "text" => "ดูข้อมุลทั้งหมด",
+                          "size" => "lg",
+                          "align" => "start",
+                          "color" => "#0084B6",
+                          "action" => [
+                            "type" => "uri",
+                            "label" => "ดูข้อมุลทั้งหมด",
+                            "uri" => "https://family.confideen.com/"
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ];
+
+                $data =
+                [
+                  'replyToken'  => $reply_token,
+                  'messages'    => [$jsonFlex]
+                ];
             }
             else if($test_connect['ini'] == "false")
             {
+              //Output -------------------------------------------------------
               $data =
               [
                 'replyToken' => $reply_token,
@@ -201,114 +282,6 @@ if ( sizeof($request_array['events']) > 0 )
                 ]
               ];
             }
-
-            $jsonFlex = [
-                "type" => "flex",
-                "altText" => "รายได้จากยอดธุรกิจส่วนตัว",
-                "contents" => [
-                  "type" => "bubble",
-                  "direction" => "ltr",
-                  "header" => [
-                    "type" => "box",
-                    "layout" => "vertical",
-                    "contents" => [
-                      [
-                        "type" => "text",
-                        "text" => "รายได้จากยอดธุรกิจส่วนตัว",
-                        "size" => "lg",
-                        "align" => "start",
-                        "weight" => "bold",
-                        "color" => "#009813"
-                      ],
-                      [
-                        "type" => "text",
-                        "text" => "ยอดขาย",
-                        "size" => "lg",
-                        "weight" => "bold",
-                        "color" => "#000000"
-                      ],
-                      [
-                        "type" => "text",
-                        "text" => "฿ 150,500.00",
-                        "size" => "3xl",
-                        "weight" => "bold",
-                        "color" => "#000000"
-                      ],
-                      [
-                        "type" => "text",
-                        "text" => "ยอดขายระหว่างวันที่ 11 ส.ค. 2562 - 10 ก.ย. 2562",
-                        "size" => "xs",
-                        "color" => "#B2B2B2"
-                      ],
-                      [
-                        "type" => "text",
-                        "text" => "ยังไม่ถึงรอบจ่าย.",
-                        "margin" => "lg",
-                        "size" => "lg",
-                        "color" => "#000000"
-                      ]
-                    ]
-                  ],
-                  "body" => [
-                    "type" => "box",
-                    "layout" => "vertical",
-                    "contents" => [
-                      [
-                        "type" => "separator",
-                        "color" => "#C3C3C3"
-                      ],
-                      [
-                        "type" => "box",
-                        "layout" => "baseline",
-                        "margin" => "lg",
-                        "contents" => [
-                          [
-                            "type" => "text",
-                            "text" => "Cashback",
-                            "align" => "start",
-                            "color" => "#C3C3C3"
-                          ],
-                          [
-                            "type" => "text",
-                            "text" => "฿ 500.00",
-                            "align" => "end",
-                            "color" => "#000000"
-                          ]
-                        ]
-                      ],
-                      [
-                        "type" => "separator",
-                        "margin" => "lg",
-                        "color" => "#C3C3C3"
-                      ]
-                    ]
-                  ],
-                  "footer" => [
-                    "type" => "box",
-                    "layout" => "horizontal",
-                    "contents" => [
-                      [
-                        "type" => "text",
-                        "text" => "ดูข้อมุลทั้งหมด",
-                        "size" => "lg",
-                        "align" => "start",
-                        "color" => "#0084B6",
-                        "action" => [
-                          "type" => "uri",
-                          "label" => "ดูข้อมุลทั้งหมด",
-                          "uri" => "https://family.confideen.com/"
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ];
-
-              $data =
-              [
-                'replyToken'  => $reply_token,
-                'messages'    => [$jsonFlex]
-              ];
 
             break;
 
@@ -319,150 +292,193 @@ if ( sizeof($request_array['events']) > 0 )
             case "โบนัส" :
             case "คะแนนธุรกิจ" :
 
-            //$reply_text = "รายได้จากการพัฒนาสายงาน \nคะแนนธุรกิจ : 150,000 PV \nPersonal Bonus : 5,000 PV \nยอดขายระหว่างวันที่ 11 ส.ค. 2562 - 10 ก.ย. 2562";
+            //----------------------------- ตรวจสอบข้อมูล ---------------------
             $test_connect = api_connect("GET","/authen/detail/" . $userID,"");
-            
-            $jsonFlex = [
-                "type" => "flex",
-                "altText" => "รายได้จากการพัฒนาสายงาน",
-                "contents" => [
-                  "type" => "bubble",
-                  "direction" => "ltr",
-                  "header" => [
-                    "type" => "box",
-                    "layout" => "vertical",
-                    "contents" => [
-                      [
-                        "type" => "text",
-                        "text" => "รายได้จากการพัฒนาสายงาน",
-                        "size" => "lg",
-                        "align" => "start",
-                        "weight" => "bold",
-                        "color" => "#009813"
-                      ],
-                      [
-                        "type" => "text",
-                        "text" => "คะแนนธุรกิจ",
-                        "size" => "lg",
-                        "weight" => "bold",
-                        "color" => "#000000"
-                      ],
-                      [
-                        "type" => "text",
-                        "text" => "PV 150,000.00",
-                        "size" => "3xl",
-                        "weight" => "bold",
-                        "color" => "#000000"
-                      ],
-                      [
-                        "type" => "text",
-                        "text" => "ยอดขายระหว่างวันที่ 11 ส.ค. 2562 - 10 ก.ย. 2562",
-                        "size" => "xs",
-                        "color" => "#B2B2B2"
-                      ],
-                      [
-                        "type" => "text",
-                        "text" => "ยังไม่ถึงรอบจ่าย.",
-                        "margin" => "lg",
-                        "size" => "lg",
-                        "color" => "#000000"
+
+            if($test_connect['ini'] == "true")
+            {
+              $jsonFlex = [
+                  "type" => "flex",
+                  "altText" => "รายได้จากการพัฒนาสายงาน",
+                  "contents" => [
+                    "type" => "bubble",
+                    "direction" => "ltr",
+                    "header" => [
+                      "type" => "box",
+                      "layout" => "vertical",
+                      "contents" => [
+                        [
+                          "type" => "text",
+                          "text" => "รายได้จากการพัฒนาสายงาน",
+                          "size" => "lg",
+                          "align" => "start",
+                          "weight" => "bold",
+                          "color" => "#009813"
+                        ],
+                        [
+                          "type" => "text",
+                          "text" => "คะแนนธุรกิจ",
+                          "size" => "lg",
+                          "weight" => "bold",
+                          "color" => "#000000"
+                        ],
+                        [
+                          "type" => "text",
+                          "text" => "PV 150,000.00",
+                          "size" => "3xl",
+                          "weight" => "bold",
+                          "color" => "#000000"
+                        ],
+                        [
+                          "type" => "text",
+                          "text" => "ยอดขายระหว่างวันที่ 11 ส.ค. 2562 - 10 ก.ย. 2562",
+                          "size" => "xs",
+                          "color" => "#B2B2B2"
+                        ],
+                        [
+                          "type" => "text",
+                          "text" => "ยังไม่ถึงรอบจ่าย.",
+                          "margin" => "lg",
+                          "size" => "lg",
+                          "color" => "#000000"
+                        ]
+                      ]
+                    ],
+                    "body" => [
+                      "type" => "box",
+                      "layout" => "vertical",
+                      "contents" => [
+                        [
+                          "type" => "separator",
+                          "color" => "#C3C3C3"
+                        ],
+                        [
+                          "type" => "box",
+                          "layout" => "baseline",
+                          "margin" => "lg",
+                          "contents" => [
+                            [
+                              "type" => "text",
+                              "text" => "Personal Bonus",
+                              "align" => "start",
+                              "color" => "#C3C3C3"
+                            ],
+                            [
+                              "type" => "text",
+                              "text" => "฿ 500.00",
+                              "align" => "end",
+                              "color" => "#000000"
+                            ]
+                          ]
+                        ],
+                        [
+                          "type" => "box",
+                          "layout" => "baseline",
+                          "margin" => "lg",
+                          "contents" => [
+                            [
+                              "type" => "text",
+                              "text" => "Bonus (สายหลัก)",
+                              "color" => "#C3C3C3"
+                            ],
+                            [
+                              "type" => "text",
+                              "text" => "฿ 500.00",
+                              "align" => "end"
+                            ]
+                          ]
+                        ],
+                        [
+                          "type" => "box",
+                          "layout" => "baseline",
+                          "margin" => "lg",
+                          "contents" => [
+                            [
+                              "type" => "text",
+                              "text" => "Bonus (สายรอง)",
+                              "color" => "#C3C3C3"
+                            ],
+                            [
+                              "type" => "text",
+                              "text" => "฿ 250.00",
+                              "align" => "end"
+                            ]
+                          ]
+                        ],
+                        [
+                          "type" => "separator",
+                          "margin" => "lg",
+                          "color" => "#C3C3C3"
+                        ]
+                      ]
+                    ],
+                    "footer" => [
+                      "type" => "box",
+                      "layout" => "horizontal",
+                      "contents" => [
+                        [
+                          "type" => "text",
+                          "text" => "ดูข้อมุลทั้งหมด",
+                          "size" => "lg",
+                          "align" => "start",
+                          "color" => "#0084B6",
+                          "action" => [
+                            "type" => "uri",
+                            "label" => "ดูข้อมุลทั้งหมด",
+                            "uri" => "https://family.confideen.com/"
+                          ]
+                        ]
                       ]
                     ]
-                  ],
-                  "body" => [
-                    "type" => "box",
-                    "layout" => "vertical",
-                    "contents" => [
+                  ]
+                ];
+
+                $data =
+                [
+                  'replyToken'  => $reply_token,
+                  'messages'    => [$jsonFlex]
+                ];
+            }
+            else if($test_connect['ini'] == "false")
+            {
+              //Output -------------------------------------------------------
+              $data =
+              [
+                'replyToken' => $reply_token,
+                'messages' =>
+                [
+                  [
+                    'type' => 'text',
+                    'text' => "บัญชี Line ของคุณยังไม่ผ่านการผูกบัญชี Confideen Family ต้องการผูกบัญชี กรุณาตอบกลับข้อความนี้ด้วยคำสั่ง \"ผูกบัญชี\"",
+                    'quickReply' =>
+                    [
+                      'items' =>
                       [
-                        "type" => "separator",
-                        "color" => "#C3C3C3"
-                      ],
-                      [
-                        "type" => "box",
-                        "layout" => "baseline",
-                        "margin" => "lg",
-                        "contents" => [
+                        [
+                          'type' => 'action',
+                          'action' =>
                           [
-                            "type" => "text",
-                            "text" => "Personal Bonus",
-                            "align" => "start",
-                            "color" => "#C3C3C3"
-                          ],
+                            'type' => 'message',
+                            'label' => 'ผูกบัญชี Confideen',
+                            'text' => 'ผูกบัญชี',
+                          ]
+                        ],
+                        [
+                          'type' => 'action',
+                          'action' =>
                           [
-                            "type" => "text",
-                            "text" => "฿ 500.00",
-                            "align" => "end",
-                            "color" => "#000000"
+                            'type' => 'message',
+                            'label' => 'ลองอีกครั้ง',
+                            'text' => 'ข้อมูลสมาชิก',
                           ]
                         ]
-                      ],
-                      [
-                        "type" => "box",
-                        "layout" => "baseline",
-                        "margin" => "lg",
-                        "contents" => [
-                          [
-                            "type" => "text",
-                            "text" => "Bonus (สายหลัก)",
-                            "color" => "#C3C3C3"
-                          ],
-                          [
-                            "type" => "text",
-                            "text" => "฿ 500.00",
-                            "align" => "end"
-                          ]
-                        ]
-                      ],
-                      [
-                        "type" => "box",
-                        "layout" => "baseline",
-                        "margin" => "lg",
-                        "contents" => [
-                          [
-                            "type" => "text",
-                            "text" => "Bonus (สายรอง)",
-                            "color" => "#C3C3C3"
-                          ],
-                          [
-                            "type" => "text",
-                            "text" => "฿ 250.00",
-                            "align" => "end"
-                          ]
-                        ]
-                      ],
-                      [
-                        "type" => "separator",
-                        "margin" => "lg",
-                        "color" => "#C3C3C3"
-                      ]
-                    ]
-                  ],
-                  "footer" => [
-                    "type" => "box",
-                    "layout" => "horizontal",
-                    "contents" => [
-                      [
-                        "type" => "text",
-                        "text" => "ดูข้อมุลทั้งหมด",
-                        "size" => "lg",
-                        "align" => "start",
-                        "color" => "#0084B6",
-                        "action" => [
-                          "type" => "uri",
-                          "label" => "ดูข้อมุลทั้งหมด",
-                          "uri" => "https://family.confideen.com/"
-                        ]
+
                       ]
                     ]
                   ]
                 ]
               ];
-
-              $data =
-              [
-                'replyToken'  => $reply_token,
-                'messages'    => [$jsonFlex]
-              ];
+            }
 
             break;
 
@@ -583,7 +599,16 @@ if ( sizeof($request_array['events']) > 0 )
                                   'label' => 'ดูโบนัสสายงาน',
                                   'text' => 'โบนัส',
                                 ]
-                              ]
+                              ],
+                              [
+                                'type' => 'action',
+                                'action' =>
+                                [
+                                  'type' => 'message',
+                                  'label' => 'ลืมรหัสผ่าน',
+                                  'text' => 'ลืมรหัสผ่าน',
+                                ]
+                              ],
                             ]
                           ]
                         ]
