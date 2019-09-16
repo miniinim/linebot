@@ -32,10 +32,10 @@ if ( sizeof($request_array['events']) > 0 )
         		//---------------- get data -----------------//
         		//$output     = api("GET","/authen/detail/" . $userID);
             $test_connect = api_connect("GET","/authen/detail/" . $userID,"");
-            $reply_text   = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : {$test_connect['member']['mem_firstname']} {$test_connect['member']['mem_lastname']} \nรหัสนักธุรกิจ : {$test_connect['member']['mem_code']} \nอีเมล์ : {$test_connect['member']['mem_email']} \nโทร : {$test_connect['member']['mem_phone']}";
 
             if($test_connect['ini'] == "true")
             {
+              $reply_text   = "ข้อมูลส่วนตัวของสมาชิก \nชื่อตัวแทน : {$test_connect['member']['mem_firstname']} {$test_connect['member']['mem_lastname']} \nรหัสนักธุรกิจ : {$test_connect['member']['mem_code']} \nอีเมล์ : {$test_connect['member']['mem_email']} \nโทร : {$test_connect['member']['mem_phone']}";
               $data =
               [
                 'replyToken' => $reply_token,
@@ -152,7 +152,8 @@ if ( sizeof($request_array['events']) > 0 )
             case "แคชแบค" :
             case "ยอดขาย" :
 
-            
+            $test_connect = api_connect("GET","/authen/detail/" . $userID,"");
+
             if($test_connect['ini'] == "true")
             {
               $data =
@@ -319,7 +320,8 @@ if ( sizeof($request_array['events']) > 0 )
             case "คะแนนธุรกิจ" :
 
             //$reply_text = "รายได้จากการพัฒนาสายงาน \nคะแนนธุรกิจ : 150,000 PV \nPersonal Bonus : 5,000 PV \nยอดขายระหว่างวันที่ 11 ส.ค. 2562 - 10 ก.ย. 2562";
-
+            $test_connect = api_connect("GET","/authen/detail/" . $userID,"");
+            
             $jsonFlex = [
                 "type" => "flex",
                 "altText" => "รายได้จากการพัฒนาสายงาน",
