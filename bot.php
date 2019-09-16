@@ -638,18 +638,15 @@ if ( sizeof($request_array['events']) > 0 )
 
                 default:
     						//------------------ RETURN ERROR -----------------
-                $message  = $text;
-                $key      = "confideen";
-                //$encoded  = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $text, MCRYPT_MODE_CBC, md5(md5($key))));
-                $connect  = api_connect("GET","/authen/chat/" . $userID . "/" . $message);
+                $connect  = api_connect("GET","/authen/chat/" . $userID . "/" . $text);
 
-                $message_text = "ส่งข้อความของคุณให้ทีมงานแล้ว กรุณารอการตอบกลับจากทีมงานค่ะ - " . $message;
+                $message  = "ส่งข้อความของคุณให้ทีมงานแล้ว กรุณารอการตอบกลับจากทีมงานค่ะ - " . $text;
                 $data =
                 [
                   'replyToken' => $reply_token,
                   //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
                   //'messages' => [['type' => 'text', 'text' => $text ]]
-                  'messages' => [['type' => 'text', 'text' => $message_text ]]
+                  'messages' => [['type' => 'text', 'text' => $message ]]
                 ];
               }
 
