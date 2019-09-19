@@ -647,28 +647,43 @@ if ( sizeof($request_array['events']) > 0 )
                 $encode_img   = strtr(base64_encode($profile['pictureUrl']), '+/', '-_');
                 $connect  = api_connect("GET","/authen/chat/" . $userID . "/" . $encode_txt . "/" . $encode_name . "/" . $encode_img, "");
 
-                if($connect['ini'] == "true")
+                if($userID=="Udeadbeefdeadbeefdeadbeefdeadbeef")
                 {
-                  $message_text = $connect['return'];
                   $data =
                   [
                     'replyToken' => $reply_token,
                     //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
                     //'messages' => [['type' => 'text', 'text' => $text ]]
-                    'messages' => [['type' => 'text', 'text' => $message_text ]]
+                    'messages' => [['type' => 'text', 'text' => $text ]]
                   ];
                 }
-                else if($connect['ini'] == "false")
+                else
                 {
-                  $message_text = $connect['return'];
-                  $data =
-                  [
-                    'replyToken' => $reply_token,
-                    //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
-                    //'messages' => [['type' => 'text', 'text' => $text ]]
-                    'messages' => [['type' => 'text', 'text' => $message_text ]]
-                  ];
+                  if($connect['ini'] == "true")
+                  {
+                    $message_text = $connect['return'];
+                    $data =
+                    [
+                      'replyToken' => $reply_token,
+                      //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                      //'messages' => [['type' => 'text', 'text' => $text ]]
+                      'messages' => [['type' => 'text', 'text' => $message_text ]]
+                    ];
+                  }
+                  else if($connect['ini'] == "false")
+                  {
+                    $message_text = $connect['return'];
+                    $data =
+                    [
+                      'replyToken' => $reply_token,
+                      //'messages' => [['type' => 'text', 'text' => json_encode($request_array) ]]  //Debug Detail message
+                      //'messages' => [['type' => 'text', 'text' => $text ]]
+                      'messages' => [['type' => 'text', 'text' => $message_text ]]
+                    ];
+                  }
                 }
+
+
 
               }
 
